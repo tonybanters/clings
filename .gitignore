@@ -1,0 +1,19 @@
+# Build artifacts
+.build/
+*.o
+*.out
+*.exe
+
+# Progress tracking
+.progress.txt
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
