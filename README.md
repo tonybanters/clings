@@ -96,13 +96,9 @@ Like Ziglings, Clings aims to:
 - Make learning C fun and engaging
 - Require no prior systems programming experience
 
-## Contributing
-
-Contributions are welcome! If you find bugs or have ideas for new exercises, please open an issue or submit a pull request.
-
 ## License
 
-MIT License - see LICENSE file for details
+GPL
 
 ## Acknowledgments
 
@@ -112,4 +108,4 @@ MIT License - see LICENSE file for details
 
 ---
 
-Ready to begin? Run `make` and start your C learning journey!
+Ready to begin? Run `make` and start learning C.
