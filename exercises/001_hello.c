@@ -5,14 +5,16 @@
 // Every C program starts with a main() function. The printf() function
 // from the standard library is used to print text to the screen.
 //
-// Fix the message below to make it say "Hello, Clings!"
+// Fix the THREE bugs below to make it compile and run correctly!
 //
 // EXPECTED: Hello, Clings!
-// HINT: Change the string inside printf()
+// EXPECTED: Welcome to C programming!
+// HINT: Check the include statement, the print messages, and the return type
 
-#include <stdio.h>
+#include <studio.h>  // TODO: Fix this include!
 
 int main(void) {
-    printf("Hello, World!\n");
-    return 0;
+    printf("Hello, World!\n");  // TODO: Fix this message!
+    printf("Welcome to C programming!\n");
+    return;  // TODO: Fix this return statement!
 }

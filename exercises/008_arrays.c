@@ -9,18 +9,40 @@
 // Access:
 //   name[index]
 //
-// Fix the array access to print the third number (30)!
+// You can also use loops to process arrays!
 //
-// EXPECTED: Third element: 30
-// HINT: The third element is at index 2 (remember: arrays start at 0!)
+// Fix THREE array-related bugs!
+//
+// EXPECTED: First: 10, Third: 30, Last: 50
+// EXPECTED: Sum of all elements: 150
+// EXPECTED: Array contents: 10 20 30 40 50
+// HINT: Remember arrays are zero-indexed, and use array size carefully
 
 #include <stdio.h>
 
 int main(void) {
     int numbers[5] = {10, 20, 30, 40, 50};
 
+    // Access individual elements
+    int first = numbers[0];
     int third = numbers[3];  // TODO: Fix this index!
+    int last = numbers[5];   // TODO: Fix this index!
 
-    printf("Third element: %d\n", third);
+    printf("First: %d, Third: %d, Last: %d\n", first, third, last);
+
+    // Calculate sum
+    int sum = 0;
+    for (int i = 0; i < 5; i++) {
+        sum += numbers[i];
+    }
+    printf("Sum of all elements: %d\n", sum);
+
+    // Print all elements
+    printf("Array contents: ");
+    for (int i = 0; i <= 5; i++) {  // TODO: Fix the loop condition!
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
     return 0;
 }

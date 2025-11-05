@@ -12,10 +12,14 @@
 // Dereference operator (*):
 //   *ptr        // gets the value at the address
 //
-// Fix the pointer operations below!
+// Pointers can also be used to modify values!
 //
-// EXPECTED: Value: 42, Address value: 42
-// HINT: Use & to get the address, and * to get the value
+// Fix THREE pointer-related bugs!
+//
+// EXPECTED: Original: 42
+// EXPECTED: Via pointer: 42
+// EXPECTED: After modification: 100
+// HINT: Use & to get addresses, * to dereference, and pointers can modify values
 
 #include <stdio.h>
 
@@ -25,6 +29,12 @@ int main(void) {
 
     ptr = value;  // TODO: Fix this - we need the ADDRESS of value!
 
-    printf("Value: %d, Address value: %d\n", value, ptr);  // TODO: Fix - dereference ptr!
+    printf("Original: %d\n", value);
+    printf("Via pointer: %d\n", ptr);  // TODO: Fix - dereference ptr!
+
+    // Modify value through pointer
+    ptr = 100;  // TODO: Fix - need to dereference to modify the value!
+
+    printf("After modification: %d\n", value);
     return 0;
 }

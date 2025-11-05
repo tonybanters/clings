@@ -107,21 +107,23 @@ run-single: $(BUILD_DIR)
 		exit 1; \
 	fi; \
 	echo -e "$(BLUE)Compiling $(EXERCISE).c...$(RESET)"; \
-	EXPECTED=$$(grep -m1 "// EXPECTED:" $$EXERCISE_FILE | sed 's/.*EXPECTED: *//'); \
+	EXPECTED=$$(grep "// EXPECTED:" $$EXERCISE_FILE | sed 's|.*// EXPECTED: *||' | sed ':a;N;$$!ba;s/\n/\\n/g'); \
 	if $(CC) $(CFLAGS) $$EXERCISE_FILE -o $(BUILD_DIR)/$(EXERCISE) 2>&1; then \
 		echo -e "$(GREEN)✓ Compilation successful$(RESET)"; \
 		if [ -n "$$EXPECTED" ]; then \
 			echo -e "$(BLUE)Running $(EXERCISE)...$(RESET)"; \
 			OUTPUT=$$($(BUILD_DIR)/$(EXERCISE) 2>&1); \
-			if [ "$$OUTPUT" = "$$EXPECTED" ]; then \
-				echo -e "$(GREEN)✓ Output correct: $$OUTPUT$(RESET)"; \
+			if [ "$$OUTPUT" = "$$(echo -e "$$EXPECTED")" ]; then \
+				echo -e "$(GREEN)✓ Output correct$(RESET)"; \
 				echo -e "$(GREEN)$(BOLD)Exercise $(EXERCISE) complete!$(RESET)"; \
 				echo -e ""; \
 				exit 0; \
 			else \
 				echo -e "$(RED)✗ Output incorrect$(RESET)"; \
-				echo -e "$(YELLOW)Expected: $$EXPECTED$(RESET)"; \
-				echo -e "$(YELLOW)Got:      $$OUTPUT$(RESET)"; \
+				echo -e "$(YELLOW)Expected:$(RESET)"; \
+				echo -e "$$(echo -e "$$EXPECTED")"; \
+				echo -e "$(YELLOW)Got:$(RESET)"; \
+				echo "$$OUTPUT"; \
 				HINT=$$(grep "// HINT:" $$EXERCISE_FILE | sed 's/.*HINT: *//'); \
 				if [ -n "$$HINT" ]; then \
 					echo -e "$(YELLOW)Hint: $$HINT$(RESET)"; \
