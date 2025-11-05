@@ -23,15 +23,15 @@ RESET := \033[0m
 all: sequential
 
 help:
-	@echo -e "$(BOLD)Clings - Learn C by fixing tiny broken programs$(RESET)"
-	@echo -e ""
-	@echo -e "Usage:"
-	@echo -e "  $(GREEN)make$(RESET)           - Run exercises sequentially until one fails"
-	@echo -e "  $(GREEN)make run N$(RESET)     - Run specific exercise N (e.g., make run 5)"
-	@echo -e "  $(GREEN)make start N$(RESET)   - Start from exercise N onwards"
-	@echo -e "  $(GREEN)make reset$(RESET)     - Reset progress tracking"
-	@echo -e "  $(GREEN)make clean$(RESET)     - Clean build artifacts"
-	@echo -e ""
+	@printf "$(BOLD)Clings - Learn C by fixing tiny broken programs$(RESET)\n"
+	@printf "\n"
+	@printf "Usage:\n"
+	@printf "  $(GREEN)make$(RESET)           - Run exercises sequentially until one fails\n"
+	@printf "  $(GREEN)make run N$(RESET)     - Run specific exercise N (e.g., make run 5)\n"
+	@printf "  $(GREEN)make start N$(RESET)   - Start from exercise N onwards\n"
+	@printf "  $(GREEN)make reset$(RESET)     - Reset progress tracking\n"
+	@printf "  $(GREEN)make clean$(RESET)     - Clean build artifacts\n"
+	@printf "\n"
 
 # Create build directory
 $(BUILD_DIR):
@@ -39,8 +39,8 @@ $(BUILD_DIR):
 
 # Sequential mode - run until failure
 sequential: $(BUILD_DIR)
-	@echo -e "$(BOLD)$(BLUE)Starting Clings...$(RESET)"
-	@echo -e ""
+	@printf "$(BOLD)$(BLUE)Starting Clings...$(RESET)\n"
+	@printf "\n"
 	@$(MAKE) -s run-all
 
 run-all:
@@ -51,21 +51,21 @@ run-all:
 		if $(MAKE) -s run-single EXERCISE=$$exercise; then \
 			success=$$((success + 1)); \
 		else \
-			echo -e ""; \
-			echo -e "$(RED)$(BOLD)Exercise $$exercise failed!$(RESET)"; \
-			echo -e "$(YELLOW)Fix the exercise and run 'make' again.$(RESET)"; \
+			printf "\n"; \
+			printf "$(RED)$(BOLD)Exercise $$exercise failed!$(RESET)\n"; \
+			printf "$(YELLOW)Fix the exercise and run 'make' again.$(RESET)\n"; \
 			exit 1; \
 		fi; \
 	done; \
-	echo -e ""; \
-	echo -e "$(GREEN)$(BOLD)🎉 All $$total exercises completed!$(RESET)"; \
-	echo -e "$(GREEN)You've mastered the basics of C programming!$(RESET)"
+	printf "\n"; \
+	printf "$(GREEN)$(BOLD)🎉 All $$total exercises completed!$(RESET)\n"; \
+	printf "$(GREEN)You've mastered the basics of C programming!$(RESET)\n"
 
 # Run specific exercise
 run:
 	@if [ -z "$(filter-out run,$(MAKECMDGOALS))" ]; then \
-		echo -e "$(RED)Error: Please specify an exercise number$(RESET)"; \
-		echo -e "Usage: make run N (e.g., make run 5)"; \
+		printf "$(RED)Error: Please specify an exercise number$(RESET)\n"; \
+		printf "Usage: make run N (e.g., make run 5)\n"; \
 		exit 1; \
 	fi
 	@$(MAKE) -s run-single EXERCISE=$(filter-out run,$(MAKECMDGOALS))
@@ -73,8 +73,8 @@ run:
 # Start from specific exercise
 start:
 	@if [ -z "$(filter-out start,$(MAKECMDGOALS))" ]; then \
-		echo -e "$(RED)Error: Please specify a starting exercise number$(RESET)"; \
-		echo -e "Usage: make start N (e.g., make start 5)"; \
+		printf "$(RED)Error: Please specify a starting exercise number$(RESET)\n"; \
+		printf "Usage: make start N (e.g., make start 5)\n"; \
 		exit 1; \
 	fi
 	@START_NUM=$(filter-out start,$(MAKECMDGOALS)); \
@@ -85,61 +85,61 @@ start:
 			if $(MAKE) -s run-single EXERCISE=$$exercise; then \
 				continue; \
 			else \
-				echo -e ""; \
-				echo -e "$(RED)$(BOLD)Exercise $$exercise failed!$(RESET)"; \
-				echo -e "$(YELLOW)Fix the exercise and run 'make' again.$(RESET)"; \
+				printf "\n"; \
+				printf "$(RED)$(BOLD)Exercise $$exercise failed!$(RESET)\n"; \
+				printf "$(YELLOW)Fix the exercise and run 'make' again.$(RESET)\n"; \
 				exit 1; \
 			fi; \
 		fi; \
 	done; \
-	echo -e ""; \
-	echo -e "$(GREEN)$(BOLD)🎉 All exercises from $$START_NUM completed!$(RESET)"
+	printf "\n"; \
+	printf "$(GREEN)$(BOLD)🎉 All exercises from $$START_NUM completed!$(RESET)\n"
 
 # Run a single exercise (internal target)
 run-single: $(BUILD_DIR)
 	@if [ -z "$(EXERCISE)" ]; then \
-		echo -e "$(RED)Error: EXERCISE not specified$(RESET)"; \
+		printf "$(RED)Error: EXERCISE not specified$(RESET)\n"; \
 		exit 1; \
 	fi
 	@EXERCISE_FILE="exercises/$(EXERCISE).c"; \
 	if [ ! -f "$$EXERCISE_FILE" ]; then \
-		echo -e "$(RED)Error: Exercise $$EXERCISE_FILE not found$(RESET)"; \
+		printf "$(RED)Error: Exercise $$EXERCISE_FILE not found$(RESET)\n"; \
 		exit 1; \
 	fi; \
-	echo -e "$(BLUE)Compiling $(EXERCISE).c...$(RESET)"; \
+	printf "$(BLUE)Compiling $(EXERCISE).c...$(RESET)\n"; \
 	EXPECTED=$$(grep "// EXPECTED:" $$EXERCISE_FILE | sed 's|.*// EXPECTED: *||' | sed ':a;N;$$!ba;s/\n/\\n/g'); \
 	if $(CC) $(CFLAGS) $$EXERCISE_FILE -o $(BUILD_DIR)/$(EXERCISE) 2>&1; then \
-		echo -e "$(GREEN)✓ Compilation successful$(RESET)"; \
+		printf "$(GREEN)✓ Compilation successful$(RESET)\n"; \
 		if [ -n "$$EXPECTED" ]; then \
-			echo -e "$(BLUE)Running $(EXERCISE)...$(RESET)"; \
+			printf "$(BLUE)Running $(EXERCISE)...$(RESET)\n"; \
 			OUTPUT=$$($(BUILD_DIR)/$(EXERCISE) 2>&1); \
-			if [ "$$OUTPUT" = "$$(echo -e "$$EXPECTED")" ]; then \
-				echo -e "$(GREEN)✓ Output correct$(RESET)"; \
-				echo -e "$(GREEN)$(BOLD)Exercise $(EXERCISE) complete!$(RESET)"; \
-				echo -e ""; \
+			if [ "$$OUTPUT" = "$$(printf "%b" "$$EXPECTED")" ]; then \
+				printf "$(GREEN)✓ Output correct$(RESET)\n"; \
+				printf "$(GREEN)$(BOLD)Exercise $(EXERCISE) complete!$(RESET)\n"; \
+				printf "\n"; \
 				exit 0; \
 			else \
-				echo -e "$(RED)✗ Output incorrect$(RESET)"; \
-				echo -e "$(YELLOW)Expected:$(RESET)"; \
-				echo -e "$$(echo -e "$$EXPECTED")"; \
-				echo -e "$(YELLOW)Got:$(RESET)"; \
+				printf "$(RED)✗ Output incorrect$(RESET)\n"; \
+				printf "$(YELLOW)Expected:$(RESET)\n"; \
+				printf "%b\n" "$$EXPECTED"; \
+				printf "$(YELLOW)Got:$(RESET)\n"; \
 				echo "$$OUTPUT"; \
 				HINT=$$(grep "// HINT:" $$EXERCISE_FILE | sed 's/.*HINT: *//'); \
 				if [ -n "$$HINT" ]; then \
-					echo -e "$(YELLOW)Hint: $$HINT$(RESET)"; \
+					printf "$(YELLOW)Hint: $$HINT$(RESET)\n"; \
 				fi; \
 				exit 1; \
 			fi; \
 		else \
-			echo -e "$(GREEN)$(BOLD)Exercise $(EXERCISE) complete!$(RESET)"; \
-			echo -e ""; \
+			printf "$(GREEN)$(BOLD)Exercise $(EXERCISE) complete!$(RESET)\n"; \
+			printf "\n"; \
 			exit 0; \
 		fi; \
 	else \
-		echo -e "$(RED)✗ Compilation failed$(RESET)"; \
+		printf "$(RED)✗ Compilation failed$(RESET)\n"; \
 		HINT=$$(grep "// HINT:" $$EXERCISE_FILE | sed 's/.*HINT: *//'); \
 		if [ -n "$$HINT" ]; then \
-			echo -e "$(YELLOW)Hint: $$HINT$(RESET)"; \
+			printf "$(YELLOW)Hint: $$HINT$(RESET)\n"; \
 		fi; \
 		exit 1; \
 	fi
@@ -147,12 +147,12 @@ run-single: $(BUILD_DIR)
 # Reset progress
 reset:
 	@rm -f $(PROGRESS_FILE)
-	@echo -e "$(GREEN)Progress reset!$(RESET)"
+	@printf "$(GREEN)Progress reset!$(RESET)\n"
 
 # Clean build artifacts
 clean:
 	@rm -rf $(BUILD_DIR)
-	@echo -e "$(GREEN)Build artifacts cleaned!$(RESET)"
+	@printf "$(GREEN)Build artifacts cleaned!$(RESET)\n"
 
 # Allow numeric arguments to be passed as targets
 %:
