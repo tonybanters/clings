@@ -5,24 +5,58 @@
 //
 // Rule: Every malloc() needs a corresponding free()!
 //
-// Fix the memory leak in this program!
+// Multiple allocations = multiple frees!
+// Free in reverse order of allocation (good practice for nested structures)
 //
-// EXPECTED: Created array
-// HINT: Add free() before returning
+// Fix THREE memory leaks in this program!
+//
+// EXPECTED: Created array of 5 elements
+// EXPECTED: Created struct
+// EXPECTED: Created string
+// EXPECTED: Cleanup complete
+// HINT: Every malloc needs a free, including nested allocations
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+struct Data {
+    int *values;
+    int size;
+};
 
 int main(void) {
-    int *data = malloc(100 * sizeof(int));
-
-    if (data == NULL) {
+    // First allocation
+    int *array = malloc(5 * sizeof(int));
+    if (array == NULL) {
         return 1;
     }
+    printf("Created array of 5 elements\n");
 
-    printf("Created array\n");
+    // Second allocation - a struct
+    struct Data *data = malloc(sizeof(struct Data));
+    if (data == NULL) {
+        return 1;  // TODO: Memory leak! Should free array before returning!
+    }
+    data->size = 10;
+    data->values = malloc(10 * sizeof(int));  // Nested allocation
+    if (data->values == NULL) {
+        free(data);
+        return 1;  // TODO: Memory leak! Should free array before returning!
+    }
+    printf("Created struct\n");
 
-    // TODO: Free the allocated memory before returning!
+    // Third allocation - a string
+    char *str = malloc(20);
+    if (str == NULL) {
+        return 1;  // TODO: Multiple memory leaks here!
+    }
+    strcpy(str, "Hello");
+    printf("Created string\n");
 
+    // TODO: Free all allocated memory before returning!
+    // Hint: Don't forget the nested allocation (data->values)!
+
+    printf("Cleanup complete\n");
     return 0;
 }

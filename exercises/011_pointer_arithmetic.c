@@ -6,19 +6,42 @@
 // For an int pointer:
 //   ptr + 1  // moves forward by sizeof(int) bytes
 //
-// This is very useful for iterating through arrays!
+// You can also use array notation with pointers:
+//   ptr[i] is the same as *(ptr + i)
 //
-// EXPECTED: 10 20 30
-// HINT: Start ptr at the beginning of the array (&numbers[0])
+// Fix THREE pointer arithmetic bugs!
+//
+// EXPECTED: Forward: 10 20 30 40 50
+// EXPECTED: Backward: 50 40 30 20 10
+// EXPECTED: Middle three: 20 30 40
+// HINT: Use pointer arithmetic and array indexing correctly
 
 #include <stdio.h>
 
 int main(void) {
-    int numbers[] = {10, 20, 30};
+    int numbers[] = {10, 20, 30, 40, 50};
     int *ptr = &numbers[1];  // TODO: Fix - start at the beginning!
 
-    for (int i = 0; i < 3; i++) {
+    // Print forward
+    printf("Forward: ");
+    for (int i = 0; i < 5; i++) {
         printf("%d ", *(ptr + i));
+    }
+    printf("\n");
+
+    // Print backward from end
+    printf("Backward: ");
+    int *end_ptr = &numbers[5];  // TODO: Fix - this points past the array!
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", *(end_ptr - i));
+    }
+    printf("\n");
+
+    // Print middle three elements using array notation
+    printf("Middle three: ");
+    int *mid_ptr = &numbers[1];
+    for (int i = 0; i <= 2; i++) {  // TODO: Fix the loop condition!
+        printf("%d ", mid_ptr[i]);
     }
     printf("\n");
 
