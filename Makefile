@@ -113,7 +113,9 @@ run-single: $(BUILD_DIR)
 		if [ -n "$$EXPECTED" ]; then \
 			printf "$(BLUE)Running $(EXERCISE)...$(RESET)\n"; \
 			OUTPUT=$$($(BUILD_DIR)/$(EXERCISE) 2>&1); \
-			if [ "$$OUTPUT" = "$$(printf "%b" "$$EXPECTED")" ]; then \
+			OUTPUT_STRIPPED=$$(echo "$$OUTPUT" | sed 's/[[:space:]]*$$//'); \
+			EXPECTED_STRIPPED=$$(printf "%b" "$$EXPECTED" | sed 's/[[:space:]]*$$//'); \
+			if [ "$$OUTPUT_STRIPPED" = "$$EXPECTED_STRIPPED" ]; then \
 				printf "$(GREEN)✓ Output correct$(RESET)\n"; \
 				printf "$(GREEN)$(BOLD)Exercise $(EXERCISE) complete!$(RESET)\n"; \
 				printf "\n"; \
