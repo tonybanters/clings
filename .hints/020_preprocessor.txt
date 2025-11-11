@@ -1,0 +1,3 @@
+#ifdef checks if a symbol is defined.
+#ifndef checks if a symbol is NOT defined.
+Make sure preprocessor conditionals match the intended logic.

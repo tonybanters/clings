@@ -19,7 +19,7 @@ BLUE := \033[0;34m
 BOLD := \033[1m
 RESET := \033[0m
 
-.PHONY: all clean help run start reset hint rogue
+.PHONY: all clean help run start reset hint rogue tui
 
 all: sequential
 
@@ -32,6 +32,7 @@ help:
 	@printf "  $(GREEN)make start N$(RESET)   - Start from exercise N onwards\n"
 	@printf "  $(GREEN)make hint$(RESET)      - Show hint for the first failing exercise\n"
 	@printf "  $(GREEN)make rogue$(RESET)     - Hardcore mode: restart from 1 on any failure\n"
+	@printf "  $(GREEN)make tui$(RESET)       - Rogue mode with interactive TUI interface\n"
 	@printf "  $(GREEN)make reset$(RESET)     - Reset progress tracking\n"
 	@printf "  $(GREEN)make clean$(RESET)     - Clean build artifacts\n"
 	@printf "\n"
@@ -145,14 +146,15 @@ run-single: $(BUILD_DIR)
 hint:
 	@success=0; \
 	for exercise in $(EXERCISE_NUMS); do \
-		EXERCISE_FILE="exercises/$$exercise.c"; \
 		if ! $(MAKE) -s run-single EXERCISE=$$exercise 2>/dev/null; then \
-			HINT=$$(grep "// HINT:" $$EXERCISE_FILE | sed 's/.*HINT: *//'); \
-			if [ -n "$$HINT" ]; then \
+			HINT_FILE=".hints/$$exercise.txt"; \
+			if [ -f "$$HINT_FILE" ]; then \
 				printf "$(YELLOW)$(BOLD)Hint for exercise $$exercise:$(RESET)\n"; \
-				printf "$(YELLOW)$$HINT$(RESET)\n"; \
+				printf "$(YELLOW)"; \
+				cat "$$HINT_FILE"; \
+				printf "$(RESET)\n"; \
 			else \
-				printf "$(YELLOW)No hint available for exercise $$exercise$(RESET)\n"; \
+				printf "$(YELLOW)No hint available for exercise $$exercise yet$(RESET)\n"; \
 			fi; \
 			exit 0; \
 		fi; \
@@ -227,6 +229,20 @@ rogue: $(BUILD_DIR)
 		fi; \
 	done
 
+# TUI mode - rogue mode with interactive interface
+tui: $(BUILD_DIR)
+	@if [ ! -f rogue_tui ]; then \
+		printf "$(YELLOW)Building TUI...$(RESET)\n"; \
+		NCURSES_INC=$$(find /nix/store -name "ncurses.h" 2>/dev/null | head -1 | xargs dirname); \
+		NCURSES_LIB=$$(find /nix/store -path "*/ncurses-*/lib" -type d 2>/dev/null | head -1); \
+		if [ -n "$$NCURSES_INC" ] && [ -n "$$NCURSES_LIB" ]; then \
+			$(CC) -o rogue_tui rogue_tui.c -I$$NCURSES_INC -L$$NCURSES_LIB -lncurses; \
+		else \
+			$(CC) -o rogue_tui rogue_tui.c -lncurses; \
+		fi; \
+	fi
+	@./rogue_tui
+
 # Reset progress
 reset:
 	@rm -f $(PROGRESS_FILE) $(ROGUE_PROGRESS)
@@ -234,7 +250,7 @@ reset:
 
 # Clean build artifacts
 clean:
-	@rm -rf $(BUILD_DIR) .rogue_backup
+	@rm -rf $(BUILD_DIR) .rogue_backup rogue_tui
 	@printf "$(GREEN)Build artifacts cleaned!$(RESET)\n"
 
 # Allow numeric arguments to be passed as targets

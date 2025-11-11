@@ -1,0 +1,3 @@
+Function return types must match what they return.
+Functions need to actually return values, not just compute them.
+Make sure function declarations match their implementations.

@@ -1,0 +1,3 @@
+Loop conditions control when the loop stops.
+Check loop counters - are they incrementing or decrementing correctly?
+Off-by-one errors are common with loop boundaries.

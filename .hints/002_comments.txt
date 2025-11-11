@@ -1,0 +1,3 @@
+Multi-line comments in C must be properly closed.
+Check if any code is accidentally commented out.
+Be careful with nested comment syntax - C doesn't support nested /* */ comments.

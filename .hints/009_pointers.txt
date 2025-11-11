@@ -1,0 +1,3 @@
+The & operator gets the address of a variable.
+The * operator dereferences a pointer to access its value.
+To modify a value through a pointer, you must dereference it.

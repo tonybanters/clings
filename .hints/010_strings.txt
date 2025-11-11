@@ -1,0 +1,3 @@
+Strings in C must end with a null terminator '\0'.
+Check format specifiers - %c is for characters, %s is for strings.
+String arrays need space for all characters plus the null terminator.

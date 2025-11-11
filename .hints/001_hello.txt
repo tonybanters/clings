@@ -1,0 +1,2 @@
+C programs need to include header files for standard library functions.
+The main function should return an integer status code to the operating system.

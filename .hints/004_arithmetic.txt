@@ -1,0 +1,2 @@
+Check that arithmetic operators match the expected results.
+Look at the variable names and expected output to understand what operation is needed.

@@ -1,0 +1,3 @@
+Array indices start at 0, not 1.
+Check loop boundaries - arrays go from 0 to (size-1).
+Accessing outside array bounds causes undefined behavior.

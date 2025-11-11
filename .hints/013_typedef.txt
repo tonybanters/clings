@@ -1,0 +1,3 @@
+typedef creates an alias for a type.
+The syntax is: typedef existing_type new_name;
+typedef lets you use shorter names instead of verbose type declarations.

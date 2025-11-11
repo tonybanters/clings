@@ -1,0 +1,4 @@
+malloc allocates memory in bytes.
+Use sizeof() to get the size of a type.
+Strings need an extra byte for the null terminator.
+Check that allocated sizes match what the code actually uses.

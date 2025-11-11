@@ -1,0 +1,3 @@
+Enums define named constants starting from 0 by default.
+Use enum values in comparisons and switch statements.
+Check that enum values match what the code expects.

@@ -1,0 +1,3 @@
+Implement string functions by iterating until you find '\0'.
+String comparison needs to check both strings character by character.
+Don't forget to handle the case where strings end at different positions.

@@ -1,0 +1,3 @@
+Pointer arithmetic moves by the size of the pointed-to type.
+Check where pointers are initialized - do they point to the right element?
+Be careful with array boundaries when using pointer arithmetic.

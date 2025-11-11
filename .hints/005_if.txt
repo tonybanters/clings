@@ -1,0 +1,2 @@
+Comparison operators determine which branch executes.
+Read the expected output and work backwards to determine the correct conditions.

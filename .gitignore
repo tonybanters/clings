@@ -3,6 +3,7 @@
 *.o
 *.out
 *.exe
+rogue_tui
 
 # Progress tracking
 .progress.txt

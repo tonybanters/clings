@@ -1,0 +1,3 @@
+This quiz tests: arrays, pointers, memory allocation, and string handling.
+Read the function signatures carefully.
+Make sure to free allocated memory and handle null terminators.

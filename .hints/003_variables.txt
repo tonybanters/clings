@@ -1,0 +1,3 @@
+Variable types must match the kind of data they store.
+Look at the values being assigned and the format specifiers in printf.
+Decimal numbers need a floating-point type.

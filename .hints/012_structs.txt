@@ -1,0 +1,3 @@
+Struct definitions need all required fields.
+Use the dot operator (.) for struct variables.
+Use the arrow operator (->) for struct pointers.

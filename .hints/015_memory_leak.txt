@@ -1,0 +1,4 @@
+Every malloc needs a corresponding free.
+Free all allocated memory before returning from a function.
+Free in reverse order for nested allocations.
+Check all error paths - memory must be freed even when returning early.
