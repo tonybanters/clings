@@ -5,6 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -std=c99 -pedantic
 BUILD_DIR = .build
 PROGRESS_FILE = .progress.txt
+ROGUE_PROGRESS = .rogue_progress
 
 # Find all exercise files
 EXERCISES := $(sort $(wildcard exercises/*.c))
@@ -18,7 +19,7 @@ BLUE := \033[0;34m
 BOLD := \033[1m
 RESET := \033[0m
 
-.PHONY: all clean help run start reset
+.PHONY: all clean help run start reset hint rogue
 
 all: sequential
 
@@ -29,6 +30,8 @@ help:
 	@printf "  $(GREEN)make$(RESET)           - Run exercises sequentially until one fails\n"
 	@printf "  $(GREEN)make run N$(RESET)     - Run specific exercise N (e.g., make run 5)\n"
 	@printf "  $(GREEN)make start N$(RESET)   - Start from exercise N onwards\n"
+	@printf "  $(GREEN)make hint$(RESET)      - Show hint for the first failing exercise\n"
+	@printf "  $(GREEN)make rogue$(RESET)     - Hardcore mode: restart from 1 on any failure\n"
 	@printf "  $(GREEN)make reset$(RESET)     - Reset progress tracking\n"
 	@printf "  $(GREEN)make clean$(RESET)     - Clean build artifacts\n"
 	@printf "\n"
@@ -126,10 +129,6 @@ run-single: $(BUILD_DIR)
 				printf "%b\n" "$$EXPECTED"; \
 				printf "$(YELLOW)Got:$(RESET)\n"; \
 				echo "$$OUTPUT"; \
-				HINT=$$(grep "// HINT:" $$EXERCISE_FILE | sed 's/.*HINT: *//'); \
-				if [ -n "$$HINT" ]; then \
-					printf "$(YELLOW)Hint: $$HINT$(RESET)\n"; \
-				fi; \
 				exit 1; \
 			fi; \
 		else \
@@ -139,21 +138,103 @@ run-single: $(BUILD_DIR)
 		fi; \
 	else \
 		printf "$(RED)✗ Compilation failed$(RESET)\n"; \
-		HINT=$$(grep "// HINT:" $$EXERCISE_FILE | sed 's/.*HINT: *//'); \
-		if [ -n "$$HINT" ]; then \
-			printf "$(YELLOW)Hint: $$HINT$(RESET)\n"; \
-		fi; \
 		exit 1; \
 	fi
 
+# Show hint for the first failing exercise
+hint:
+	@success=0; \
+	for exercise in $(EXERCISE_NUMS); do \
+		EXERCISE_FILE="exercises/$$exercise.c"; \
+		if ! $(MAKE) -s run-single EXERCISE=$$exercise 2>/dev/null; then \
+			HINT=$$(grep "// HINT:" $$EXERCISE_FILE | sed 's/.*HINT: *//'); \
+			if [ -n "$$HINT" ]; then \
+				printf "$(YELLOW)$(BOLD)Hint for exercise $$exercise:$(RESET)\n"; \
+				printf "$(YELLOW)$$HINT$(RESET)\n"; \
+			else \
+				printf "$(YELLOW)No hint available for exercise $$exercise$(RESET)\n"; \
+			fi; \
+			exit 0; \
+		fi; \
+	done; \
+	printf "$(GREEN)All exercises are passing! No hint needed.$(RESET)\n"
+
+# Rogue mode - restart from 1 on any failure
+rogue: $(BUILD_DIR)
+	@printf "$(BOLD)$(RED)== ROGUE MODE ACTIVATED ==$(RESET)\n"
+	@printf "$(YELLOW)Fail once, start over from exercise 1!$(RESET)\n"
+	@printf "\n"
+	@if [ -f $(ROGUE_PROGRESS) ]; then \
+		CURRENT=$$(cat $(ROGUE_PROGRESS)); \
+		BEST=$$(echo $$CURRENT | cut -d'/' -f1); \
+		printf "$(BLUE)Best run: $$BEST exercises cleared$(RESET)\n"; \
+		printf "\n"; \
+	fi
+	@printf "$(YELLOW)Backing up exercises...$(RESET)\n"; \
+	rm -rf .rogue_backup; \
+	cp -r exercises .rogue_backup; \
+	printf "$(GREEN)Ready!$(RESET)\n\n"; \
+	while true; do \
+		cleared=0; \
+		total=$$(echo $(EXERCISE_NUMS) | wc -w); \
+		failed=0; \
+		for exercise in $(EXERCISE_NUMS); do \
+			printf "$(BOLD)Progress: $$cleared/$$total$(RESET) | $(BLUE)Current: $$exercise$(RESET)\n"; \
+			printf "$(YELLOW)Fix the exercise in exercises/$$exercise.c$(RESET)\n"; \
+			printf "$(GREEN)Press Enter when ready to submit...$(RESET) "; \
+			read ready; \
+			printf "\n"; \
+			if $(MAKE) -s run-single EXERCISE=$$exercise; then \
+				cleared=$$((cleared + 1)); \
+				printf "\n"; \
+			else \
+				printf "\n"; \
+				printf "$(RED)$(BOLD)== GAME OVER ==$(RESET)\n"; \
+				printf "$(RED)Exercise $$exercise failed!$(RESET)\n"; \
+				printf "$(YELLOW)You cleared: $$cleared exercises$(RESET)\n"; \
+				if [ -f $(ROGUE_PROGRESS) ]; then \
+					BEST=$$(cat $(ROGUE_PROGRESS) | cut -d'/' -f1); \
+					if [ $$cleared -gt $$BEST ]; then \
+						printf "$(GREEN)$(BOLD)== NEW RECORD ==$(RESET)\n"; \
+						printf "$(GREEN)Previous best: $$BEST$(RESET)\n"; \
+						echo "$$cleared/$$total" > $(ROGUE_PROGRESS); \
+					else \
+						printf "$(BLUE)Best run: $$BEST exercises$(RESET)\n"; \
+					fi; \
+				else \
+					echo "$$cleared/$$total" > $(ROGUE_PROGRESS); \
+				fi; \
+				printf "\n"; \
+				printf "$(YELLOW)Restoring exercises from backup...$(RESET)\n"; \
+				rm -rf exercises; \
+				cp -r .rogue_backup exercises; \
+				printf "$(RED)Restarting from exercise 1...$(RESET)\n"; \
+				printf "$(GREEN)Press Enter to continue...$(RESET) "; \
+				read ready; \
+				printf "\n"; \
+				failed=1; \
+				break; \
+			fi; \
+		done; \
+		if [ $$failed -eq 0 ]; then \
+			printf "\n"; \
+			printf "$(GREEN)$(BOLD)== VICTORY ==$(RESET)\n"; \
+			printf "$(GREEN)You completed all $$total exercises in rogue mode!$(RESET)\n"; \
+			printf "$(GREEN)$(BOLD)You are a C programming master!$(RESET)\n"; \
+			echo "$$total/$$total" > $(ROGUE_PROGRESS); \
+			rm -rf .rogue_backup; \
+			break; \
+		fi; \
+	done
+
 # Reset progress
 reset:
-	@rm -f $(PROGRESS_FILE)
+	@rm -f $(PROGRESS_FILE) $(ROGUE_PROGRESS)
 	@printf "$(GREEN)Progress reset!$(RESET)\n"
 
 # Clean build artifacts
 clean:
-	@rm -rf $(BUILD_DIR)
+	@rm -rf $(BUILD_DIR) .rogue_backup
 	@printf "$(GREEN)Build artifacts cleaned!$(RESET)\n"
 
 # Allow numeric arguments to be passed as targets

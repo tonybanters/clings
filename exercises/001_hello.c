@@ -11,7 +11,7 @@
 // EXPECTED: Welcome to C programming!
 // HINT: Check the include statement, the print messages, and the return type
 
-include stdio.h // Fix this include! 
+include stdio.h // Fix this include!
 
 int main(void) {
     printf("Hello, World!\n");  // TODO: Fix this message!

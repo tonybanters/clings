@@ -6,6 +6,8 @@
 
 # Progress tracking
 .progress.txt
+.rogue_progress
+.rogue_backup/
 
 # Editor files
 *.swp
