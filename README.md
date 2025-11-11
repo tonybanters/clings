@@ -4,6 +4,8 @@ Welcome to **Clings** - a series of tiny broken C programs that will teach you h
 
 Inspired by the brilliant [Ziglings](https://codeberg.org/ziglings/exercises) and [Rustlings](https://github.com/rust-lang/rustlings) projects.
 
+![Clings TUI](assets/rogue-tui.png)
+
 ## Getting Started
 
 ### Prerequisites
@@ -36,6 +38,9 @@ make run 5      # Run a specific exercise (e.g., exercise 5)
 make start 10   # Start from exercise 10 and continue sequentially
 make clean      # Remove build artifacts
 make help       # Show help message
+make rogue      # Run exercises in random order (rogue-like mode)
+make hint       # Show hints for the current exercise
+make tui        # Launch the interactive TUI (Text User Interface)
 ```
 
 ## How It Works
