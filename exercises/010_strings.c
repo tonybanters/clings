@@ -21,17 +21,17 @@
 #include <stdio.h>
 
 int main(void) {
-    char greeting[6] = {'H', 'e', 'l', 'l', 'o'};  // TODO: Missing null terminator!
+    char greeting[6] = {'H', 'e', 'l', 'l', 'o'};  // TODO: Fix this!
 
     printf("Greeting: %s\n", greeting);
 
     // Access first character
     char first = greeting[0];
-    printf("First char: %d\n", first);  // TODO: Fix format specifier for char!
+    printf("First char: %d\n", first);  // TODO: Fix format specifier!
 
     // Modify the string
     greeting[0] = 'J';
-    greeting[1] = 'a';  // TODO: Fix - should be 'e' to make "Jello"!
+    greeting[1] = 'a';  // TODO: Fix this!
 
     printf("Modified: %s\n", greeting);
     return 0;

@@ -16,7 +16,7 @@ void reverse_array(int arr[], int size) {
     int left = 0;
     int right = size - 1;
 
-    // TODO: Fix loop condition - should be left < right!
+    // TODO: Fix this!
     while (left > right) {
         // Swap elements
         int temp = arr[left];
@@ -44,7 +44,7 @@ int main(void) {
 
     reverse_array(numbers, size);
 
-    // TODO: Fix label - should say "Reversed:"!
+    // TODO: Fix this!
     printf("Original: ");
     print_array(numbers, size);
 

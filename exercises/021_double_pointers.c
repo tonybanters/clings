@@ -27,17 +27,17 @@
 #include <stdio.h>
 
 void modify_via_pointer(int *ptr) {
-    ptr = 100;  // TODO: Fix - need to dereference to modify the value!
+    ptr = 100;  // TODO: Fix this!
 }
 
 int main(void) {
     int value = 42;
     int *ptr = &value;
-    int **ptr2 = ptr;  // TODO: Fix - need address of ptr, not ptr itself!
+    int **ptr2 = ptr;  // TODO: Fix this!
 
     printf("Value: %d\n", value);
     printf("Via single pointer: %d\n", *ptr);
-    printf("Via double pointer: %d\n", *ptr2);  // TODO: Fix - need double dereference!
+    printf("Via double pointer: %d\n", *ptr2);  // TODO: Fix this!
 
     modify_via_pointer(&value);
     printf("Modified value: %d\n", value);

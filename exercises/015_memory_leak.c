@@ -36,26 +36,25 @@ int main(void) {
     // Second allocation - a struct
     struct Data *data = malloc(sizeof(struct Data));
     if (data == NULL) {
-        return 1;  // TODO: Memory leak! Should free array before returning!
+        return 1;  // TODO: Fix memory leak!
     }
     data->size = 10;
     data->values = malloc(10 * sizeof(int));  // Nested allocation
     if (data->values == NULL) {
         free(data);
-        return 1;  // TODO: Memory leak! Should free array before returning!
+        return 1;  // TODO: Fix memory leak!
     }
     printf("Created struct\n");
 
     // Third allocation - a string
     char *str = malloc(20);
     if (str == NULL) {
-        return 1;  // TODO: Multiple memory leaks here!
+        return 1;  // TODO: Fix memory leaks!
     }
     strcpy(str, "Hello");
     printf("Created string\n");
 
-    // TODO: Free all allocated memory before returning!
-    // Hint: Don't forget the nested allocation (data->values)!
+    // TODO: Free all allocated memory!
 
     printf("Cleanup complete\n");
     return 0;

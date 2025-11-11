@@ -60,7 +60,7 @@ void enqueue(struct Queue *q, int value) {
         return;
     }
 
-    // TODO: Fix - need modulo for circular queue!
+    // TODO: Fix this!
     q->rear = q->rear + 1;
     q->data[q->rear] = value;
     q->size++;
@@ -74,7 +74,7 @@ int dequeue(struct Queue *q) {
     }
 
     int value = q->data[q->front];
-    // TODO: Fix - need modulo for circular queue!
+    // TODO: Fix this!
     q->front = q->front + 1;
     q->size--;
     return value;
@@ -93,7 +93,7 @@ int main(void) {
 
     enqueue(&q, 10);
     enqueue(&q, 20);
-    // TODO: Fix - missing third enqueue!
+    // TODO: Fix this!
 
     printf("Front: %d\n", peek(&q));
 

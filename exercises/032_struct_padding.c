@@ -49,14 +49,14 @@ struct PackedLayout {
 
 int main(void) {
     printf("Bad layout size: %zu ", sizeof(struct BadLayout));
-    // TODO: Fix - should be 12, not 6! (char + padding + int + char + padding)
+    // TODO: Fix this! (char + padding + int + char + padding)
     printf("(wastes 6 bytes)\n");
 
     printf("Good layout size: %zu ", sizeof(struct GoodLayout));
-    // TODO: Fix - should be 8, not 6! (int + char + char + padding)
+    // TODO: Fix this! (int + char + char + padding)
     printf("(wastes 2 bytes)\n");
 
-    // TODO: Fix - packed should be 6 (1 + 4 + 1), not 8!
+    // TODO: Fix this!
     printf("Packed size: %zu (no padding)\n", sizeof(struct BadLayout));
 
     // Demonstrate the difference

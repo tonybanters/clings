@@ -32,7 +32,7 @@ void tb_init(TextBuffer *tb) {
 void tb_insert(TextBuffer *tb, size_t pos, const char *text) {
     size_t text_len = strlen(text);
 
-    // TODO: Fix - should be memmove, not memcpy (overlapping memory)!
+    // TODO: Fix this!
     // Move existing text to make room
     memcpy(tb->data + pos + text_len, tb->data + pos, tb->length - pos);
 

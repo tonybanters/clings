@@ -18,7 +18,7 @@
 void caesar_encrypt(char *text, int shift) {
     while (*text != '\0') {
         if (isupper(*text)) {
-            // TODO: Fix formula - should be (*text - 'A' + shift) % 26 + 'A'!
+            // TODO: Fix this!
             *text = (*text - 'A' + shift) + 'A';
         } else if (islower(*text)) {
             *text = (*text - 'a' + shift) % 26 + 'a';
@@ -43,7 +43,7 @@ int main(void) {
     printf("Encrypted: %s\n", message1);
 
     caesar_decrypt(message2, 3);
-    // TODO: Fix - should print message2, not message1!
+    // TODO: Fix this!
     printf("Decrypted: %s\n", message1);
 
     return 0;

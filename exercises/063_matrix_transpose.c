@@ -21,7 +21,7 @@
 void transpose(int src[][3], int dest[][2], int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            // TODO: Fix indices - should be dest[j][i] = src[i][j]!
+            // TODO: Fix this!
             dest[i][j] = src[i][j];
         }
     }
@@ -46,7 +46,7 @@ int main(void) {
     transpose(matrix, transposed, 2, 3);
 
     printf("Transposed matrix:\n");
-    // TODO: Fix dimensions - should be 3 rows, 2 cols!
+    // TODO: Fix this!
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 3; j++) {
             printf("%d ", transposed[i][j]);

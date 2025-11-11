@@ -35,7 +35,7 @@ int main(void) {
     FILE *file;
 
     // Write initial content
-    // TODO: Fix - should use "w" mode for writing!
+    // TODO: Fix this!
     file = fopen("data.txt", "r");
     if (file == NULL) {
         printf("Failed to open file for writing\n");
@@ -55,7 +55,7 @@ int main(void) {
         return 1;
     }
 
-    // TODO: Fix - missing newline in fprintf!
+    // TODO: Fix this!
     fprintf(file, "Line 3: Appended");
     fclose(file);
 
@@ -70,7 +70,7 @@ int main(void) {
 
     printf("Final contents:\n");
     char buffer[100];
-    // TODO: Fix - while should check != NULL, not == NULL!
+    // TODO: Fix this!= NULL, not == NULL!
     while (fgets(buffer, sizeof(buffer), file) == NULL) {
         printf("%s", buffer);
     }

@@ -40,7 +40,7 @@ int main(void) {
     p1.y = 40;
 
     printf("Modified original: (%d, %d)\n", p1.x, p1.y);
-    // TODO: Fix - should print p2, not p1!
+    // TODO: Fix this!
     printf("Copy unchanged: (%d, %d)\n", p1.x, p1.y);
 
     // Warning: shallow copy with pointers!

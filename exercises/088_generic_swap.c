@@ -31,7 +31,7 @@ int main(void) {
 
     float x = 3.14f, y = 2.71f;
     printf("Before: x=%.2f, y=%.2f\n", x, y);
-    // TODO: Fix - should use sizeof(float), not sizeof(int)!
+    // TODO: Fix this!
     swap(&x, &y, sizeof(int));
     printf("After: x=%.2f, y=%.2f\n", x, y);
 

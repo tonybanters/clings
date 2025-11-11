@@ -64,7 +64,7 @@ void map_set(HashMap *map, const char *key, int value) {
     Entry *new_entry = malloc(sizeof(Entry));
     new_entry->key = strdup(key);
     new_entry->value = value;
-    // TODO: Fix - should link to existing bucket!
+    // TODO: Fix this!
     new_entry->next = NULL;
     map->buckets[index] = new_entry;
 
@@ -76,7 +76,7 @@ int map_get(HashMap *map, const char *key, int *value) {
     Entry *current = map->buckets[index];
 
     while (current != NULL) {
-        // TODO: Fix - should use strcmp, not ==!
+        // TODO: Fix this!
         if (current->key == key) {
             *value = current->value;
             return 1;

@@ -31,7 +31,7 @@
 int main(int argc, char **argv) {
     printf("Program name: %s\n", argv[0]);
 
-    // TODO: Fix - argc includes the program name, so subtract 1!
+    // TODO: Fix this!
     printf("Number of arguments: %d\n", argc);
 
     // Check if we have at least 2 arguments (plus program name)
@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
     }
 
     // Print arguments
-    // TODO: Fix - loop should start at 1 (skip program name) and go to argc-1!
+    // TODO: Fix this!
     for (int i = 0; i < argc; i++) {
         printf("Argument %d: %s\n", i, argv[i]);
     }
@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
     // Check for specific argument
     int found = 0;
     for (int i = 1; i < argc; i++) {
-        // TODO: Fix - use strcmp to compare strings, not ==!
+        // TODO: Fix this!
         if (argv[i] == "hello") {
             found = 1;
             break;

@@ -23,7 +23,7 @@
 #include <stdio.h>
 
 void fill_array(const int *arr, int size, int value) {
-    // TODO: Fix - arr is const int*, can't modify through it!
+    // TODO: Fix this!
     // Change parameter to: int *arr
     for (int i = 0; i < size; i++) {
         arr[i] = value;
@@ -42,7 +42,7 @@ int main(void) {
     value = 100;
     printf("Changed value: %d\n", value);
 
-    // TODO: Fix - trying to modify through const pointer!
+    // TODO: Fix this!
     *ptr1 = 200;
 
     // Const pointer to mutable int (can't change where it points)
@@ -50,7 +50,7 @@ int main(void) {
     int *const ptr2 = &x;
     *ptr2 = 15;  // OK - can modify value
 
-    // TODO: Fix - can't change where const pointer points!
+    // TODO: Fix this!
     ptr2 = &y;
 
     printf("Via ptr2: %d\n", *ptr2);

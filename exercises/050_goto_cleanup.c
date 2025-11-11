@@ -79,7 +79,7 @@ int process_with_cleanup(void) {
 cleanup:
     printf("Cleaning up...\n");
 
-    // TODO: Fix - missing cleanup for data!
+    // TODO: Fix this!
     if (temp_file) {
         fclose(temp_file);
     }

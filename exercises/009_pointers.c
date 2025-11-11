@@ -30,10 +30,10 @@ int main(void) {
     ptr = value;  // TODO: Fix this - we need the ADDRESS of value!
 
     printf("Original: %d\n", value);
-    printf("Via pointer: %d\n", ptr);  // TODO: Fix - dereference ptr!
+    printf("Via pointer: %d\n", ptr);  // TODO: Fix this!
 
     // Modify value through pointer
-    ptr = 100;  // TODO: Fix - need to dereference to modify the value!
+    ptr = 100;  // TODO: Fix this!
 
     printf("After modification: %d\n", value);
     return 0;

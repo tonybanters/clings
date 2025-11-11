@@ -56,7 +56,7 @@ int read_config(const char *filename) {
 
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        // TODO: Fix - use perror to print error message with errno!
+        // TODO: Fix this!
         printf("Cannot open %s\n", filename);
         return -1;
     }
@@ -76,7 +76,7 @@ int main(void) {
     }
 
     result = read_config("nonexistent.txt");
-    // TODO: Fix - should check if result != 0 (error), not == 0!
+    // TODO: Fix this!= 0 (error), not == 0!
     if (result == 0) {
         printf("Warning: Could not read config file\n");
     }

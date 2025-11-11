@@ -28,7 +28,7 @@
 
 int main(void) {
     // Allocate array of 5 integers
-    int *numbers = malloc(3 * sizeof(int));  // TODO: Fix size - need 5 ints!
+    int *numbers = malloc(3 * sizeof(int));  // TODO: Fix size!
 
     if (numbers == NULL) {
         printf("Memory allocation failed!\n");
@@ -49,13 +49,13 @@ int main(void) {
     // Double each value
     printf("Doubled: ");
     for (int i = 0; i < 5; i++) {
-        numbers[i] = numbers[i] * 2;  // TODO: Fix - should multiply by 2, not add!
+        numbers[i] = numbers[i] * 2;  // TODO: Fix this!
         printf("%d ", numbers[i]);
     }
     printf("\n");
 
     // Allocate string (don't forget null terminator!)
-    char *str = malloc(5);  // TODO: Fix - "Hello" needs 6 bytes (5 chars + '\0')!
+    char *str = malloc(5);  // TODO: Fix size!
     if (str == NULL) {
         free(numbers);
         return 1;

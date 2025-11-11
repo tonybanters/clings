@@ -50,7 +50,7 @@ int main(void) {
     strcpy(data.str, "Hello");
     printf("String: %s\n", data.str);
 
-    // TODO: Fix - trying to access old values that were overwritten!
+    // TODO: Fix this!
     printf("Last value in union: ");
     // After storing "Hello", i and f contain garbage!
     if (data.i == 42) {
@@ -61,7 +61,7 @@ int main(void) {
         printf("%s (string)\n", data.str);
     }
 
-    // TODO: Fix the expected size - should be 20, not 26!
+    // TODO: Fix this!
     printf("Union size: %zu (size of largest member)\n", sizeof(data));
 
     // Tagged union pattern (union + enum for type safety)
@@ -73,7 +73,7 @@ int main(void) {
     };
 
     struct TaggedData td;
-    td.type = TYPE_STRING;  // TODO: This should be TYPE_INT to match the value!
+    td.type = TYPE_STRING;  // TODO: Fix this!
     td.value.i = 100;
 
     return 0;

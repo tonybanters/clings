@@ -20,7 +20,7 @@
 
 int main(void) {
     int numbers[] = {10, 20, 30, 40, 50};
-    int *ptr = &numbers[1];  // TODO: Fix - start at the beginning!
+    int *ptr = &numbers[1];  // TODO: Fix this!
 
     // Print forward
     printf("Forward: ");
@@ -31,7 +31,7 @@ int main(void) {
 
     // Print backward from end
     printf("Backward: ");
-    int *end_ptr = &numbers[5];  // TODO: Fix - this points past the array!
+    int *end_ptr = &numbers[5];  // TODO: Fix this!
     for (int i = 0; i < 5; i++) {
         printf("%d ", *(end_ptr - i));
     }

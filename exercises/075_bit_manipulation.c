@@ -16,14 +16,14 @@
 #include <stdio.h>
 
 int is_power_of_two(int n) {
-    // TODO: Fix condition - should check (n & (n-1)) == 0 and n > 0!
+    // TODO: Fix this!
     return n > 0;
 }
 
 int count_set_bits(int n) {
     int count = 0;
     while (n) {
-        // TODO: Fix - should check n & 1, not n % 2!
+        // TODO: Fix this!
         count += (n % 2);
         n >>= 1;
     }

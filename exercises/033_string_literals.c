@@ -31,14 +31,14 @@ int main(void) {
     char str2[] = "World";
     printf("Array copy: %s\n", str2);
 
-    // TODO: Fix - can't modify string literal! Use str2 instead!
+    // TODO: Fix this!
     str1[0] = 'J';  // UNDEFINED BEHAVIOR!
     printf("Modified array: %s\n", str1);
 
     // Array of strings (array of pointers)
     char *words[] = {"One", "Two", "Three"};
 
-    // TODO: Fix - wrong type! Should be char*, not char!
+    // TODO: Fix type!
     for (char i = 0; i < 3; i++) {
         printf("%s ", words[i]);
     }
@@ -47,7 +47,7 @@ int main(void) {
     // String length without strlen
     char *text = "Hello";
     int len = 0;
-    // TODO: Fix - need to dereference text[len], not just check len!
+    // TODO: Fix this!
     while (len != '\0') {
         len++;
     }

@@ -38,7 +38,7 @@ int fibonacci(int n) {
     if (n <= 1) {
         return n;
     }
-    // TODO: Fix - should be fib(n-1) + fib(n-2), not multiply!
+    // TODO: Fix this!
     return fibonacci(n - 1) * fibonacci(n - 2);
 }
 
@@ -53,7 +53,7 @@ int power(int base, int exp) {
     if (exp == 0) {
         return 1;
     }
-    // TODO: Fix - should multiply by base, not add!
+    // TODO: Fix this!
     return base + power(base, exp - 1);
 }
 

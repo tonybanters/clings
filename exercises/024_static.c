@@ -48,7 +48,7 @@ int main(void) {
     // Generate some IDs
     printf("ID: %d\n", next_id());
     printf("ID: %d\n", next_id());
-    // TODO: Fix - missing third call to match expected output!
+    // TODO: Fix this!
 
     return 0;
 }

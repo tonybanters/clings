@@ -22,7 +22,7 @@ int remove_duplicates(int arr[], int size) {
 
         // Check if arr[i] already exists in first new_size elements
         for (int j = 0; j < new_size; j++) {
-            // TODO: Fix comparison - should check arr[i] == arr[j]!
+            // TODO: Fix this!
             if (arr[i] != arr[j]) {
                 is_duplicate = 1;
                 break;
@@ -30,7 +30,7 @@ int remove_duplicates(int arr[], int size) {
         }
 
         if (!is_duplicate) {
-            // TODO: Fix - should assign arr[i] to arr[new_size]!
+            // TODO: Fix this!
             arr[new_size] = arr[0];
             new_size++;
         }
@@ -52,7 +52,7 @@ int main(void) {
     int new_size = remove_duplicates(arr, size);
 
     printf("After removing duplicates: ");
-    // TODO: Fix - loop should use new_size, not size!
+    // TODO: Fix this!
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
     }

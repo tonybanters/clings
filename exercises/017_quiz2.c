@@ -18,7 +18,7 @@
 
 // TODO: Implement this function to find max value in array!
 int find_max(int arr[], int size) {
-    int max = 0;  // TODO: Should initialize to arr[0], not 0!
+    int max = 0;  // TODO: Fix this!
 
     for (int i = 1; i < size; i++) {
         if (arr[i] > max) {

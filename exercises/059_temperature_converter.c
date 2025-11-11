@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 float fahrenheit_to_celsius(float f) {
-    // TODO: Fix - need floating point division! Use 5.0/9.0!
+    // TODO: Fix this!
     return (f - 32) * 5 / 9;
 }
 
@@ -30,7 +30,7 @@ int main(void) {
     printf("100°F = %.1f°C\n", fahrenheit_to_celsius(100));
 
     printf("0°C = %.1f°F\n", celsius_to_fahrenheit(0));
-    // TODO: Fix - should convert 100°C, not 0°C!
+    // TODO: Fix this!
     printf("100°C = %.1f°F\n", celsius_to_fahrenheit(0));
 
     return 0;

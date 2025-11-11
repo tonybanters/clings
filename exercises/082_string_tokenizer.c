@@ -22,12 +22,12 @@ int main(void) {
 
     printf("Tokens:\n");
 
-    // TODO: Fix - first call should use str, not NULL!
+    // TODO: Fix this!
     char *token = strtok(NULL, delim);
 
     while (token != NULL) {
         printf("  %s\n", token);
-        // TODO: Fix - subsequent calls should use NULL, not str!
+        // TODO: Fix this!
         token = strtok(str, delim);
     }
 

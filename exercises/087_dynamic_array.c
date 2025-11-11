@@ -31,7 +31,7 @@ void da_init(DynamicArray *arr, size_t initial_capacity) {
 
 void da_push(DynamicArray *arr, int value) {
     if (arr->size >= arr->capacity) {
-        // TODO: Fix - should double capacity, not add 1!
+        // TODO: Fix this!
         arr->capacity = arr->capacity + 1;
         arr->data = realloc(arr->data, arr->capacity * sizeof(int));
         printf("Resized to capacity: %zu\n", arr->capacity);
@@ -59,7 +59,7 @@ int main(void) {
 
     printf("Array: ");
     for (size_t i = 0; i < arr.size; i++) {
-        // TODO: Fix - should access arr.data[i], not arr.data!
+        // TODO: Fix this!
         printf("%d ", arr.data);
     }
     printf("\n");

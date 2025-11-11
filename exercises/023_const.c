@@ -22,7 +22,7 @@
 #include <stdio.h>
 
 // This function should NOT modify the array
-int sum_array(int *arr, int size) {  // TODO: Fix - arr should be const int*!
+int sum_array(int *arr, int size) {  // TODO: Fix this!
     int sum = 0;
     for (int i = 0; i < size; i++) {
         sum += arr[i];
@@ -37,7 +37,7 @@ int main(void) {
 
     printf("Initial value: %d\n", value);
 
-    // TODO: Fix - can't modify through const pointer!
+    // TODO: Fix this!
     *ptr = 100;
     printf("Changed via pointer: %d\n", value);
 
@@ -57,7 +57,7 @@ int main(void) {
     int total = sum_array(numbers, 5);
     printf("Sum: %d\n", total);
 
-    // TODO: Fix - after fixing sum_array, numbers should still have values!
+    // TODO: Fix this!
 
     return 0;
 }

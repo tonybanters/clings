@@ -46,7 +46,7 @@ int main(void) {
     printf("\n");
 
     // Expand to 10 elements
-    // TODO: Fix - DANGEROUS! If realloc fails, we lose original pointer!
+    // TODO: Fix this!
     // Should use: int *temp = realloc(arr, ...); check temp, then arr = temp;
     arr = realloc(arr, 10 * sizeof(int));
     if (arr == NULL) {
@@ -68,7 +68,7 @@ int main(void) {
     // Shrink to 3 elements
     int *temp = realloc(arr, 3 * sizeof(int));
     if (temp == NULL) {
-        // TODO: Fix - realloc can fail even when shrinking!
+        // TODO: Fix this!
         // Should keep using arr with original size
         free(arr);
         return 1;
@@ -76,7 +76,7 @@ int main(void) {
     arr = temp;
 
     printf("Shrunk array: ");
-    // TODO: Fix - loop should only go to 3, not 10!
+    // TODO: Fix this!
     for (int i = 0; i < 10; i++) {
         printf("%d ", arr[i]);
     }

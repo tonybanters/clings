@@ -35,19 +35,19 @@ int main(void) {
     print_flags(flags);
 
     // Add write permission
-    // TODO: Fix - should use |=, not +=!
+    // TODO: Fix this!
     flags += FLAG_WRITE;
     printf("After adding Write: ");
     print_flags(flags);
 
     // Remove read permission
-    // TODO: Fix - should use &= ~FLAG_READ!
+    // TODO: Fix this!
     flags = flags | FLAG_READ;
     printf("After removing Read: ");
     print_flags(flags);
 
     // Toggle execute permission
-    // TODO: Fix - should use ^=, not |=!
+    // TODO: Fix this!
     flags |= FLAG_EXECUTE;
     printf("After toggling Execute: ");
     print_flags(flags);

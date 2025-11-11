@@ -15,7 +15,7 @@
 
 void check_env(const char *name) {
     char *value = getenv(name);
-    // TODO: Fix condition - should check if value != NULL!
+    // TODO: Fix this!= NULL!
     if (value == NULL) {
         printf("%s exists\n", name);
     } else {

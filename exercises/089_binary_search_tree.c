@@ -38,7 +38,7 @@ Node* insert(Node *root, int data) {
         return create_node(data);
     }
 
-    // TODO: Fix condition - should be data < root->data!
+    // TODO: Fix this!
     if (data > root->data) {
         root->left = insert(root->left, data);
     } else {

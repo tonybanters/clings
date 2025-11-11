@@ -30,7 +30,7 @@ void selection_sort(int arr[], int size) {
 
     for (int i = 0; i < size - 1; i++) {
         // Find minimum element in unsorted part
-        // TODO: Fix - min_idx should start at i, not 0!
+        // TODO: Fix this!
         int min_idx = 0;
 
         for (int j = i + 1; j < size; j++) {
@@ -42,7 +42,7 @@ void selection_sort(int arr[], int size) {
         // Swap minimum with first element of unsorted part
         if (min_idx != i) {
             int temp = arr[i];
-            // TODO: Fix - should swap with arr[min_idx], not arr[i+1]!
+            // TODO: Fix this!
             arr[i] = arr[i + 1];
             arr[i + 1] = temp;
             swaps++;
@@ -69,7 +69,7 @@ int main(void) {
     selection_sort(arr, size);
 
     printf("Sorted:   ");
-    // TODO: Fix - should print arr, not print the array again with wrong label!
+    // TODO: Fix this!
     print_array(arr, size);
 
     return 0;

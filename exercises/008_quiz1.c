@@ -21,18 +21,18 @@
 int main(void) {
     // Personal information
     char name[] = "Alice";
-    float age = 25;  // TODO: Fix type - age should be int!
+    float age = 25;  // TODO: Fix type!
 
     printf("Name: %s, Age: %d\n", name, age);
 
     // Calculate future age
     int years = 5;
-    int future_age = age - years;  // TODO: Fix operator!
+    int future_age = age - years;  // TODO: Fix this operation!
 
     printf("In %d years: %d\n", years, future_age);
 
     // Double the age
-    int double_age = age + age;  // TODO: Fix - should multiply, not add!
+    int double_age = age + age;  // TODO: Fix this operation!
     printf("Double age: %d\n", double_age);
 
     // Check if adult

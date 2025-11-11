@@ -13,7 +13,7 @@
 #include <string.h>
 
 void parse_csv_line(char *line) {
-    // TODO: Fix delimiter - should be "," not ";"!
+    // TODO: Fix this!
     char *name = strtok(line, ";");
     char *age = strtok(NULL, ",");
     // TODO: Add strtok call to get city!
@@ -36,7 +36,7 @@ int main(void) {
         strcpy(line_copy, line);
         parse_csv_line(line_copy);
 
-        // TODO: Fix - should use NULL, not data!
+        // TODO: Fix this!
         line = strtok(data, "\n");
     }
 

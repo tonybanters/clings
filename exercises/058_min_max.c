@@ -16,7 +16,7 @@ void find_min_max(int arr[], int size, int *min, int *max) {
         return;
     }
 
-    // TODO: Initialize to first element, not 0!
+    // TODO: Fix this!
     *min = 0;
     *max = 0;
 
@@ -46,7 +46,7 @@ int main(void) {
     printf("Minimum: %d\n", min);
     printf("Maximum: %d\n", max);
 
-    // TODO: Fix - range is max - min, not max + min!
+    // TODO: Fix this operation!
     int range = max + min;
     printf("Range: %d\n", range);
 

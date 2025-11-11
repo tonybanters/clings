@@ -17,7 +17,7 @@ int main(void) {
     srand(time(NULL));
 
     // Pick random number 1-100
-    // TODO: Fix - should be rand() % 100 + 1 for range 1-100!
+    // TODO: Fix this!
     int secret = rand() % 100;
     int guess;
     int attempts = 0;
@@ -30,7 +30,7 @@ int main(void) {
         scanf("%d", &guess);
         attempts++;
 
-        // TODO: Fix comparison - should be guess < secret!
+        // TODO: Fix this!
         if (guess > secret) {
             printf("Too low! Try again.\n");
         } else if (guess > secret) {

@@ -35,7 +35,7 @@ int main(void) {
     printf("As int: %d\n", data.i);
     printf("As bytes: ");
     for (int i = 0; i < 4; i++) {
-        // TODO: Fix - should print as %d (decimal), not %c (char)!
+        // TODO: Fix this!
         printf("%c ", data.bytes[i]);
     }
     printf("\n");
@@ -44,12 +44,12 @@ int main(void) {
     Shape s1;
     s1.type = CIRCLE;
     s1.shape.circle.radius = 5.0f;
-    // TODO: Fix formula - should be M_PI * r * r!
+    // TODO: Fix this!
     float area1 = M_PI * s1.shape.circle.radius;
     printf("Circle area: %.2f\n", area1);
 
     Shape s2;
-    // TODO: Fix - should be RECTANGLE, not CIRCLE!
+    // TODO: Fix this!
     s2.type = CIRCLE;
     s2.shape.rectangle.width = 4.0f;
     s2.shape.rectangle.height = 6.0f;

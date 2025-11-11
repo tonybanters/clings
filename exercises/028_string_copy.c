@@ -29,14 +29,14 @@ int main(void) {
     printf("Copied: %s\n", dest1);
 
     // Safe copy with strncpy
-    char dest2[6];  // TODO: Fix - need 6 bytes for "World" + '\0'!
+    char dest2[6];  // TODO: Fix size!
     strncpy(dest2, "World", sizeof(dest2) - 1);
     dest2[sizeof(dest2) - 1] = '\0';  // Always null-terminate after strncpy!
     printf("Safe copy: %s\n", dest2);
 
     // Concatenation
     char dest3[20] = "Hello";
-    strcat(dest3, " World");  // TODO: Fix - space is missing!
+    strcat(dest3, " World");  // TODO: Fix this!
     printf("Concatenated: %s\n", dest3);
 
     // Building a full name
@@ -44,7 +44,7 @@ int main(void) {
     char last_name[] = "Doe";
     char full_name[50];
 
-    // TODO: Fix - copy first_name first, then concatenate last_name!
+    // TODO: Fix this!
     strcpy(full_name, last_name);
     strcat(full_name, " ");
     strcat(full_name, first_name);

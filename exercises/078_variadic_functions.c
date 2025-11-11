@@ -22,7 +22,7 @@ int sum(int count, ...) {
 
     int total = 0;
     for (int i = 0; i < count; i++) {
-        // TODO: Fix - should use va_arg(args, int)!
+        // TODO: Fix this!
         total += count;
     }
 
@@ -37,7 +37,7 @@ int max(int count, ...) {
     va_list args;
     va_start(args, count);
 
-    // TODO: Fix - initialize with first argument, not 0!
+    // TODO: Fix this!
     int maximum = 0;
 
     for (int i = 0; i < count; i++) {

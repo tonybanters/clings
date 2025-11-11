@@ -33,7 +33,7 @@ inline int max_inline(int a, int b) {
 }
 
 // Dangerous macro without parentheses!
-// TODO: Fix - need parentheses around x!
+// TODO: Fix this!
 #define SQUARE(x) x * x
 
 // Safe macro with parentheses
@@ -50,7 +50,7 @@ int main(void) {
 
     // Macro pitfall
     printf("Macro SQUARE(5): %d\n", SQUARE(5));
-    // TODO: Fix - This expands wrong! 1+2 * 1+2 = 5, not 9!
+    // TODO: Fix this!
     printf("Macro SQUARE(1+2): %d\n", SQUARE(1+2));
 
     printf("Safe SQUARE(1+2): %d\n", SAFE_SQUARE(1+2));

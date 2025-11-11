@@ -37,7 +37,7 @@ Allocator* allocator_create(size_t size) {
     Block *block = (Block*)alloc->memory;
     block->size = size - sizeof(Block);
     block->next = NULL;
-    // TODO: Fix - should set free = 1 (true)!
+    // TODO: Fix this!
     block->free = 0;
 
     alloc->free_list = block;
@@ -51,10 +51,10 @@ void* allocator_alloc(Allocator *alloc, size_t size) {
 
     while (current != NULL) {
         if (current->free && current->size >= size) {
-            // TODO: Fix - should set free = 0 (false)!
+            // TODO: Fix this!
             current->free = 1;
             printf("Allocated %zu bytes\n", size);
-            // TODO: Fix - return pointer after Block header!
+            // TODO: Fix this!
             return current;
         }
         current = current->next;

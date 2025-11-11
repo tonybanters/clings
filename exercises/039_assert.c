@@ -31,7 +31,7 @@
 #include <assert.h>
 
 int factorial(int n) {
-    // TODO: Add assertion - n should be non-negative!
+    // TODO: Fix this!
 
     if (n <= 1) {
         return 1;
@@ -40,8 +40,8 @@ int factorial(int n) {
 }
 
 int array_sum(int *arr, int size) {
-    // TODO: Add assertion - arr should not be NULL!
-    // TODO: Add assertion - size should be positive!
+    // TODO: Fix this!
+    // TODO: Fix this!
 
     int sum = 0;
     for (int i = 0; i < size; i++) {
@@ -51,7 +51,7 @@ int array_sum(int *arr, int size) {
 }
 
 void divide(int a, int b) {
-    // TODO: Fix - add assertion that b != 0!
+    // TODO: Add assertion!
     int result = a / b;
     printf("Result: %d\n", result);
 }

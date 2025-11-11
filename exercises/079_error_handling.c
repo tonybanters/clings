@@ -45,7 +45,7 @@ int main(void) {
 
     // Safe division
     int result;
-    // TODO: Fix - should check return value == -1!
+    // TODO: Fix this!
     if (safe_divide(10, 0, &result) == 0) {
         printf("Result: %d\n", result);
     } else {

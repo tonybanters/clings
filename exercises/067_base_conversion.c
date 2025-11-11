@@ -26,7 +26,7 @@ void decimal_to_binary(int n, char *result) {
     int i = 0;
 
     while (n > 0) {
-        // TODO: Fix - should be n % 2, not n / 2!
+        // TODO: Fix this!
         temp[i++] = (n / 2) + '0';
         n /= 2;
     }
@@ -34,7 +34,7 @@ void decimal_to_binary(int n, char *result) {
 
     // Reverse the string
     for (int j = 0; j < i; j++) {
-        // TODO: Fix indices - should be result[j] = temp[i-1-j]!
+        // TODO: Fix this!
         result[j] = temp[j];
     }
     result[i] = '\0';
@@ -51,7 +51,7 @@ int main(void) {
 
     // Built-in formatters make octal and hex easy!
     printf("Octal: %o\n", num);
-    // TODO: Fix format specifier - should be %X (uppercase)!
+    // TODO: Fix this!
     printf("Hexadecimal: %x\n", num);
 
     return 0;

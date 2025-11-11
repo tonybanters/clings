@@ -29,7 +29,7 @@ int main(void) {
     printf("File size: %ld bytes\n", size);
 
     // Read last 5 bytes
-    // TODO: Fix - should seek to size-5, not 5!
+    // TODO: Fix this!
     fseek(file, 5, SEEK_SET);
     char buffer[6];
     fread(buffer, 1, 5, file);

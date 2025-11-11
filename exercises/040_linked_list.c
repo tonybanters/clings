@@ -46,7 +46,7 @@ struct Node* insert_head(struct Node *head, int data) {
     }
 
     new_node->data = data;
-    // TODO: Fix - new_node->next should point to current head!
+    // TODO: Fix this!
     new_node->next = NULL;
     return new_node;
 }
@@ -54,7 +54,7 @@ struct Node* insert_head(struct Node *head, int data) {
 // Search for a value
 int search(struct Node *head, int target) {
     struct Node *current = head;
-    // TODO: Fix - should check current != NULL, not current->next!
+    // TODO: Fix this!= NULL, not current->next!
     while (current->next != NULL) {
         if (current->data == target) {
             return 1;  // Found
@@ -88,7 +88,7 @@ struct Node* delete_node(struct Node *head, int target) {
     if (current->next != NULL) {
         struct Node *temp = current->next;
         current->next = current->next->next;
-        // TODO: Fix - forgot to free the deleted node!
+        // TODO: Fix memory leak!
     }
 
     return head;

@@ -28,7 +28,7 @@ void parse_url(const char *url) {
     }
 
     // Start of host
-    // TODO: Fix - should be protocol_end + 3, not + 1!
+    // TODO: Fix this!
     const char *host_start = protocol_end + 1;
 
     // Find port
@@ -47,7 +47,7 @@ void parse_url(const char *url) {
 
     // Extract port if present
     if (port_start && port_start < path_start) {
-        // TODO: Fix - should start at port_start + 1, not port_start!
+        // TODO: Fix this!
         const char *port_str = port_start;
         int len = path_start - port_str;
         char port[10];

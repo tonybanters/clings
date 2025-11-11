@@ -35,7 +35,7 @@ int main(void) {
     pthread_t thread1, thread2;
     int id1 = 1, id2 = 2;
 
-    // TODO: Fix - should pass &id1, not id1!
+    // TODO: Fix this!
     pthread_create(&thread1, NULL, thread_function, id1);
     pthread_create(&thread2, NULL, thread_function, &id2);
 

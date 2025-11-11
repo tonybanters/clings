@@ -26,7 +26,7 @@
 struct Person {
     char name[50];
     int age;
-    // TODO: Add a 'height' field of type float here!
+    // TODO: Add missing field!
 };
 
 int main(void) {
@@ -37,11 +37,11 @@ int main(void) {
 
     // Access via pointer
     struct Person *ptr = &bob;
-    printf("Via pointer: %s, Age: %d, Height: %.2f\n", ptr.name, ptr.age, ptr.height);  // TODO: Fix - use arrow operator!
+    printf("Via pointer: %s, Age: %d, Height: %.2f\n", ptr.name, ptr.age, ptr.height);  // TODO: Fix operator!
 
     // Modify through pointer
     ptr = &alice;
-    ptr->age = 31;  // TODO: Fix - missing dereference or arrow!
+    ptr->age = 31;  // TODO: Fix this!
 
     printf("Updated: %s, Age: %d, Height: %.2f\n", alice.name, alice.age, alice.height);
 

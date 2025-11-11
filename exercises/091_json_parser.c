@@ -22,11 +22,11 @@ void parse_simple_json(const char *json) {
     if (key_start == NULL) return;
     key_start++;  // Skip opening quote
 
-    // TODO: Fix - should use strchr, not strrchr!
+    // TODO: Fix this!
     const char *key_end = strrchr(key_start, '"');
 
     char key[50];
-    // TODO: Fix - should be key_end - key_start!
+    // TODO: Fix this!
     int key_len = key_start - key_end;
     strncpy(key, key_start, key_len);
     key[key_len] = '\0';

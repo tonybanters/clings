@@ -31,7 +31,7 @@
 // Sum variable number of integers
 int sum(int count, ...) {
     va_list args;
-    // TODO: Fix - va_start needs the last fixed parameter (count)!
+    // TODO: Fix this!
     va_start(args);
 
     int total = 0;
@@ -56,7 +56,7 @@ int max(int count, ...) {
         }
     }
 
-    // TODO: Fix - forgot to call va_end!
+    // TODO: Fix this!
 
     return maximum;
 }
@@ -67,7 +67,7 @@ void print_values(int count, ...) {
     va_start(args, count);
 
     for (int i = 0; i < count; i++) {
-        // TODO: Fix - wrong type! Should be int, not char
+        // TODO: Fix type!
         printf("%d ", va_arg(args, char));
     }
     printf("\n");

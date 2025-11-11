@@ -37,7 +37,7 @@ int multiply(int a, int b) {
     return a * b;
 }
 
-// TODO: Fix the return type - should match the functions above!
+// TODO: Fix this!
 void apply_operation(int (*op)(int, int), int x, int y) {
     int result = op(x, y);
     printf("Using function pointer: %d\n", result);
@@ -50,14 +50,14 @@ int main(void) {
     printf("Subtract: %d - %d = %d\n", x, y, subtract(x, y));
     printf("Multiply: %d * %d = %d\n", x, y, multiply(x, y));
 
-    // TODO: Fix - missing & operator to get function address!
+    // TODO: Fix this!
     int (*func_ptr)(int, int) = add;
     apply_operation(func_ptr, x, y);
 
     // Array of function pointers
     int (*operations[3])(int, int) = {add, subtract, multiply};
 
-    // TODO: Fix - wrong index and wrong call syntax!
+    // TODO: Fix this!
     int result = operations(x, y);
 
     return 0;

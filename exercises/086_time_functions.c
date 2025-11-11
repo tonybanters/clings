@@ -16,13 +16,13 @@
 
 int main(void) {
     time_t now;
-    // TODO: Fix - should pass &now, not NULL!
+    // TODO: Fix this!
     time(NULL);
 
     struct tm *local = localtime(&now);
 
     // tm_year is years since 1900
-    // TODO: Fix - should add 1900 to tm_year!
+    // TODO: Fix this!
     int year = local->tm_year;
     printf("Current year: %d\n", year);
 
@@ -31,7 +31,7 @@ int main(void) {
     printf("Month is between 1 and 12\n");
 
     char buffer[80];
-    // TODO: Fix - should use local, not &now!
+    // TODO: Fix this!
     strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &now);
     printf("Formatted time printed\n");
 

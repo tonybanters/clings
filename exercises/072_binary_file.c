@@ -25,13 +25,13 @@ int main(void) {
 
     fwrite(&num1, sizeof(int), 1, file);
     fwrite(&num2, sizeof(short), 1, file);
-    // TODO: Fix - should write &num3, not num3!
+    // TODO: Fix this!
     fwrite(num3, sizeof(float), 1, file);
 
     fclose(file);
 
     // Read binary data
-    // TODO: Fix mode - should be "rb" not "r"!
+    // TODO: Fix this!
     file = fopen("data.bin", "r");
     if (file == NULL) return 1;
 

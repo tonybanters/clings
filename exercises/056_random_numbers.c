@@ -30,7 +30,7 @@ int main(void) {
     // Roll dice three times (1-6)
     printf("Rolling dice: ");
     for (int i = 0; i < 3; i++) {
-        // TODO: Fix - should be rand() % 6 + 1 for 1-6!
+        // TODO: Fix this!
         int roll = rand() % 6;
         printf("%d ", roll);
     }

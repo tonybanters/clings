@@ -36,7 +36,7 @@ void insertion_sort(int arr[], int size) {
         int j = i - 1;
 
         // Move elements greater than key one position right
-        // TODO: Fix - should be arr[j] > key, not arr[j] < key!
+        // TODO: Fix this!
         while (j >= 0 && arr[j] < key) {
             arr[j + 1] = arr[j];
             j--;
@@ -44,7 +44,7 @@ void insertion_sort(int arr[], int size) {
         }
 
         // Insert key at correct position
-        // TODO: Fix - should be j + 1, not j!
+        // TODO: Fix this!
         arr[j] = key;
     }
 
@@ -65,7 +65,7 @@ int main(void) {
     printf("Original: ");
     print_array(arr, size);
 
-    // TODO: Fix - missing function call to insertion_sort!
+    // TODO: Fix this!
 
     printf("Sorted:   ");
     print_array(arr, size);

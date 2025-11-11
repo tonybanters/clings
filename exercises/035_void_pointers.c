@@ -25,7 +25,7 @@
 
 void print_value(void *ptr, char type) {
     if (type == 'i') {
-        // TODO: Fix - must cast void* to int* before dereferencing!
+        // TODO: Fix this!
         printf("Integer: %d\n", *ptr);
     } else if (type == 'f') {
         printf("Float: %.2f\n", *(float *)ptr);
@@ -39,7 +39,7 @@ void swap(void *a, void *b, size_t size) {
     char temp[size];
     memcpy(temp, a, size);
     memcpy(a, b, size);
-    // TODO: Fix - should copy temp to b, not a to b again!
+    // TODO: Fix this!
     memcpy(b, a, size);
 }
 
@@ -59,7 +59,7 @@ int main(void) {
 
     // Void pointer arithmetic (NOT ALLOWED!)
     void *ptr = &i;
-    // TODO: Fix - can't do arithmetic on void*! Cast to char* or int* first
+    // TODO: Fix this!
     ptr = ptr + 1;
 
     return 0;

@@ -20,11 +20,11 @@
 int main(int argc, char *argv[]) {
     printf("Program name: %s\n", argv[0]);
 
-    // TODO: Fix - should be argc - 1 (don't count program name)!
+    // TODO: Fix this!
     printf("Number of arguments: %d\n", argc);
 
     printf("Arguments:\n");
-    // TODO: Fix - should start at i = 1, not i = 0!
+    // TODO: Fix this!
     for (int i = 0; i < argc; i++) {
         printf("  %s\n", argv[i]);
     }

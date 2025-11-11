@@ -24,13 +24,13 @@ int fib_memo(int n) {
     }
 
     // Check if already computed
-    // TODO: Fix - should check if memo[n] != -1 (already computed)!
+    // TODO: Fix this!= -1 (already computed)!
     if (memo[n] == -1) {
         return memo[n];
     }
 
     // Compute and store
-    // TODO: Fix - should store result: memo[n] = fib_memo(n-1) + fib_memo(n-2)!
+    // TODO: Fix this!
     memo[n] = fib_memo(n - 1);
 
     return memo[n];

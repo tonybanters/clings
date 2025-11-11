@@ -37,7 +37,7 @@ int cb_write(CircularBuffer *cb, int value) {
     }
 
     cb->data[cb->write_pos] = value;
-    // TODO: Fix - use modulo: cb->write_pos = (cb->write_pos + 1) % BUFFER_SIZE;
+    // TODO: Fix this!
     cb->write_pos = cb->write_pos + 1;
     cb->count++;
 

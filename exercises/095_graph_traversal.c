@@ -39,7 +39,7 @@ void enqueue(Queue *q, int value) {
 
 int dequeue(Queue *q) {
     int item = q->items[q->front];
-    // TODO: Fix - should increment front, not decrement!
+    // TODO: Fix this!
     q->front--;
     if (q->front > q->rear) {
         q->front = q->rear = -1;
@@ -66,7 +66,7 @@ void bfs(int graph[][MAX_NODES], int num_nodes, int start) {
         printf("Visited: %d\n", node);
 
         for (int i = 0; i < num_nodes; i++) {
-            // TODO: Fix - should check graph[node][i] == 1!
+            // TODO: Fix this!
             if (graph[i][node] == 1 && !visited[i]) {
                 visited[i] = true;
                 enqueue(&q, i);

@@ -45,7 +45,7 @@ int main(void) {
     printf("may have garbage values\n");
 
     // Calloc: zeroed memory
-    // TODO: Fix - calloc takes (count, size), not (total_bytes)!
+    // TODO: Fix this!
     int *arr2 = calloc(5 * sizeof(int));
     if (arr2 == NULL) {
         free(arr1);
@@ -78,7 +78,7 @@ int main(void) {
     }
     printf("\n");
 
-    // TODO: Fix - memory leak! Need to free people!
+    // TODO: Fix memory leak!
     free(arr1);
     free(arr2);
 

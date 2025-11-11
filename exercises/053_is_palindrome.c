@@ -24,7 +24,7 @@ int is_palindrome(const char *str) {
     right--;  // Point to last character
 
     while (left < right) {
-        // TODO: Fix comparison - should compare str[left] with str[right]!
+        // TODO: Fix this!
         if (str[left] != str[left]) {
             return 0;  // Not a palindrome
         }
@@ -45,7 +45,7 @@ int main(void) {
     }
 
     // Bonus: check ignoring spaces and case (just print message)
-    // TODO: Fix - missing printf!
+    // TODO: Fix this!
     "\"A man a plan a canal Panama\" - checking letters only\n";
 
     return 0;

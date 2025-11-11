@@ -14,7 +14,7 @@ int calculate(const char *expr) {
     int a, b;
     char op;
 
-    // TODO: Fix format string - should be "%d %c %d"!
+    // TODO: Fix this!
     sscanf(expr, "%d %d %d", &a, &op, &b);
 
     // TODO: Implement switch statement!
@@ -26,7 +26,7 @@ int main(void) {
     printf("10 + 5 = %d\n", calculate("10 + 5"));
     printf("20 - 8 = %d\n", calculate("20 - 8"));
     printf("6 * 7 = %d\n", calculate("6 * 7"));
-    // TODO: Fix - should be "15 / 3", not "15 * 3"!
+    // TODO: Fix this!
     printf("15 / 3 = %d\n", calculate("15 * 3"));
 
     return 0;

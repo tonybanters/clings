@@ -20,7 +20,7 @@ void merge_arrays(int arr1[], int size1, int arr2[], int size2, int result[]) {
 
     // Merge while both arrays have elements
     while (i < size1 && j < size2) {
-        // TODO: Fix comparison - should be <=, not >=!
+        // TODO: Fix this!
         if (arr1[i] >= arr2[j]) {
             result[k++] = arr1[i++];
         } else {

@@ -30,7 +30,7 @@
 int main(void) {
     // First, create and write to a file
     printf("Writing to file...\n");
-    FILE *file = fopen("test.txt", "r");  // TODO: Fix - should be write mode "w"!
+    FILE *file = fopen("test.txt", "r");  // TODO: Fix mode!
 
     if (file == NULL) {
         printf("Could not create file\n");
@@ -40,11 +40,11 @@ int main(void) {
     fprintf(file, "Hello from file!\n");
     fprintf(file, "This is line 2\n");
     fprintf(file, "And line 3!\n");
-    // TODO: Missing fclose() here! Always close before reopening!
+    // TODO: Missing something here!
 
     // Now read it back line by line
     printf("Reading from file:\n");
-    file = fopen("test.txt", "w");  // TODO: Fix - should be read mode "r"!
+    file = fopen("test.txt", "w");  // TODO: Fix mode!
     if (file == NULL) {
         printf("Could not open file\n");
         return 1;

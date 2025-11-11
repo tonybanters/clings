@@ -47,7 +47,7 @@ int main(void) {
         printf("Debug mode: ON\n");
     #endif
 
-    // TODO: This should be inside #ifdef VERSION, not #ifndef!
+    // TODO: Fix this!
     #ifndef VERSION
         printf("Version: %s\n", VERSION);
     #endif

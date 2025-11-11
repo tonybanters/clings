@@ -62,7 +62,7 @@ int main(void) {
     // Test enum values
     enum Color color = GREEN;
     printf("Color: ");
-    // TODO: Fix this comparison - should check if color == GREEN
+    // TODO: Fix this comparison!
     if (color = RED) {
         printf("Red");
     } else if (color == GREEN) {

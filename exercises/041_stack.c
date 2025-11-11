@@ -40,7 +40,7 @@ struct Stack {
 };
 
 void init_stack(struct Stack *s) {
-    // TODO: Fix - top should be -1 for empty stack!
+    // TODO: Fix this!
     s->top = 0;
 }
 
@@ -57,7 +57,7 @@ void push(struct Stack *s, int value) {
         printf("Stack overflow!\n");
         return;
     }
-    // TODO: Fix - should increment top THEN assign!
+    // TODO: Fix this!
     s->data[s->top] = value;
     printf("Pushed: %d\n", value);
 }
@@ -67,7 +67,7 @@ int pop(struct Stack *s) {
         printf("Stack underflow!\n");
         return -1;
     }
-    // TODO: Fix - should return THEN decrement top!
+    // TODO: Fix this!
     s->top--;
     return s->data[s->top];
 }

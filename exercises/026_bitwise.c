@@ -57,13 +57,13 @@ int main(void) {
 
     printf("~a = %d (binary: 11110011...)\n", (signed int)~a);
 
-    // TODO: Fix - should be left shift (<<), not right shift!
+    // TODO: Fix this!
     printf("a << 1 = %u (multiply by 2)\n", a >> 1);
 
     printf("b >> 1 = %u (divide by 2)\n", b >> 1);
 
     // Using bitwise OR to set flags
-    unsigned int permissions = READ & EXECUTE;  // TODO: Fix - should use OR (|) to combine flags!
+    unsigned int permissions = READ & EXECUTE;  // TODO: Fix this!
 
     printf("Flags: ");
     if (permissions & READ) {
@@ -75,7 +75,7 @@ int main(void) {
     if (permissions & EXECUTE) {
         printf("EXECUTE ");
     }
-    // TODO: Fix - missing logic to check DELETE flag!
+    // TODO: Fix this!
     printf("enabled\n");
 
     return 0;

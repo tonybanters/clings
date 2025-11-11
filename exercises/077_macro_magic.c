@@ -15,17 +15,17 @@
 
 #include <stdio.h>
 
-// TODO: Fix - need parentheses around (a) and (b)!
+// TODO: Fix this!
 #define MAX(a, b) a > b ? a : b
 
-// TODO: Fix - need parentheses: ((x) * (x))!
+// TODO: Fix this!
 #define SQUARE(x) x * x
 
 // Stringify macro (turns argument into string)
 #define STRINGIFY(x) #x
 
 // Debug macro (prints variable name and value)
-// TODO: Fix - should use #x to print variable name!
+// TODO: Fix this!
 #define DEBUG(x) printf("DEBUG: %s = %d\n", "var", x)
 
 // Multi-statement macro

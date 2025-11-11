@@ -36,7 +36,7 @@ int main(void) {
     };
 
     printf("Static 2D array:\n");
-    // TODO: Fix - should be 2 rows, not 3!
+    // TODO: Fix this!
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             printf("%d ", matrix[i][j]);
@@ -47,7 +47,7 @@ int main(void) {
     // Calculate sum
     int sum = 0;
     for (int i = 0; i < 2; i++) {
-        // TODO: Fix - should be 3 columns, not 2!
+        // TODO: Fix this!
         for (int j = 0; j < 2; j++) {
             sum += matrix[i][j];
         }
@@ -55,7 +55,7 @@ int main(void) {
     printf("Sum: %d\n", sum);
 
     // Access specific element
-    // TODO: Fix - indices should be [1][2] to get 6, not [2][1]!
+    // TODO: Fix this!
     printf("Element at [1][2]: %d\n", matrix[2][1]);
 
     // Dynamic 2D array

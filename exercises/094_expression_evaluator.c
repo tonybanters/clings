@@ -47,7 +47,7 @@ int evaluate_rpn(const char *expr) {
 
     while (token != NULL) {
         if (isdigit(token[0])) {
-            // TODO: Fix - should use atoi to convert string to int!
+            // TODO: Fix this!
             stack_push(&s, token[0]);
         } else {
             // Operator

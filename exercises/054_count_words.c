@@ -23,7 +23,7 @@ int count_words(const char *str) {
         if (isspace(*str)) {
             in_word = 0;  // We're in whitespace
         } else {
-            // TODO: Fix - should check if we were NOT in a word before!
+            // TODO: Fix this!
             if (in_word) {
                 count++;  // Starting a new word
             }
@@ -42,7 +42,7 @@ int main(void) {
     printf("\"The quick brown fox\" has %d words\n",
            count_words("The quick brown fox"));
 
-    // TODO: Fix - wrong string! Should test "   spaces   everywhere   "
+    // TODO: Fix this!
     printf("\"   spaces   everywhere   \" has %d words\n",
            count_words("   no   spaces   "));
 

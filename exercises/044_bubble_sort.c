@@ -28,12 +28,12 @@
 void bubble_sort(int arr[], int size) {
     int passes = 0;
 
-    // TODO: Fix - outer loop should be size-1, not size!
+    // TODO: Fix this!
     for (int i = 0; i < size; i++) {
         int swapped = 0;
 
         // Inner loop: compare adjacent elements
-        // TODO: Fix - should be size-i-1 (last i elements are sorted)!
+        // TODO: Fix this!
         for (int j = 0; j < size; j++) {
             if (arr[j] > arr[j + 1]) {
                 // Swap
@@ -71,7 +71,7 @@ int main(void) {
 
     bubble_sort(arr, size);
 
-    // TODO: Fix - print "Sorted:" not "Original:"!
+    // TODO: Fix this!
     printf("Original: ");
     print_array(arr, size);
 

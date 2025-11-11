@@ -38,7 +38,7 @@ void add_task(const char *desc) {
     if (new_task == NULL) return;
 
     new_task->id = next_id++;
-    // TODO: Fix - use strncpy for safety!
+    // TODO: Fix this!
     strcpy(new_task->description, desc);
     new_task->completed = 0;
     new_task->next = head;

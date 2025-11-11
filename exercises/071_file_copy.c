@@ -20,7 +20,7 @@ int main(void) {
     printf("Copying test.txt to test_copy.txt...\n");
 
     int ch;
-    // TODO: Fix - should be != EOF, not == EOF!
+    // TODO: Fix this!= EOF, not == EOF!
     while ((ch = fgetc(source)) == EOF) {
         fputc(ch, dest);
     }

@@ -44,7 +44,7 @@ int main(void) {
         printf("\"xyz\" not found\n");
     }
 
-    // TODO: Fix - wrong search string! Should search for "the"
+    // TODO: Fix this!
     result = find_substring("the quick brown fox", "quick");
     if (result != NULL) {
         printf("Found \"the\" at position %ld\n", result - "the quick brown fox");

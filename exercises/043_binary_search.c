@@ -32,7 +32,7 @@ int binary_search(int arr[], int size, int target) {
     int right = size - 1;
 
     while (left <= right) {
-        // TODO: Fix - should be (left + right) / 2!
+        // TODO: Fix this!
         int mid = left + right;
 
         if (arr[mid] == target) {
@@ -58,7 +58,7 @@ int binary_search_recursive(int arr[], int left, int right, int target) {
     if (arr[mid] == target) {
         return mid;
     } else if (arr[mid] < target) {
-        // TODO: Fix - should search RIGHT half (mid+1 to right)!
+        // TODO: Fix this!
         return binary_search_recursive(arr, left, mid - 1, target);
     } else {
         return binary_search_recursive(arr, left, mid - 1, target);
@@ -79,7 +79,7 @@ int main(void) {
         printf("Found 70 at index %d\n", index);
     }
 
-    // TODO: Fix - should search for 90 (not in array), not 80!
+    // TODO: Fix this!
     index = binary_search(arr, size, 80);
     if (index == -1) {
         printf("90 not found\n");
