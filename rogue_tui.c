@@ -61,7 +61,6 @@ void load_exercises(RogueState *state) {
     while ((entry = readdir(dir)) != NULL && state->num_exercises < MAX_EXERCISES) {
         char *ext = strrchr(entry->d_name, '.');
         if (ext && strcmp(ext, ".c") == 0) {
-            // Copy name without extension
             size_t len = ext - entry->d_name;
             if (len < sizeof(state->exercises[0].name)) {
                 strncpy(state->exercises[state->num_exercises].name, entry->d_name, len);
@@ -71,8 +70,6 @@ void load_exercises(RogueState *state) {
         }
     }
     closedir(dir);
-
-    // Sort exercises
     qsort(state->exercises, state->num_exercises, sizeof(Exercise), compare_exercises);
 }
 
@@ -141,7 +138,6 @@ char *get_hint(const char *exercise) {
     size_t pos = 0;
     char line[256];
 
-    // Read entire hint file
     while (fgets(line, sizeof(line), f) && pos < sizeof(hint) - 1) {
         size_t len = strlen(line);
         if (pos + len < sizeof(hint) - 1) {
@@ -155,7 +151,6 @@ char *get_hint(const char *exercise) {
         return "No hint available for this exercise yet";
     }
 
-    // Remove trailing newline
     size_t len = strlen(hint);
     if (len > 0 && hint[len - 1] == '\n') {
         hint[len - 1] = '\0';
@@ -174,10 +169,8 @@ void draw_centered(int y, const char *text, int attr) {
 }
 
 void draw_header(RogueState *state) {
-    // Title
     draw_centered(0, "== ROGUE MODE ==", COLOR_PAIR(COLOR_PAIR_RED) | A_BOLD);
 
-    // Progress
     char progress[64];
     snprintf(progress, sizeof(progress), "Progress: %d/%d", state->cleared, state->num_exercises);
     mvprintw(1, 2, "%s", progress);
@@ -186,7 +179,6 @@ void draw_header(RogueState *state) {
     snprintf(best, sizeof(best), "Best: %d", state->best_score);
     mvprintw(1, COLS - strlen(best) - 2, "%s", best);
 
-    // Separator
     attron(COLOR_PAIR(COLOR_PAIR_BLUE));
     for (int i = 0; i < COLS; i++) {
         mvaddch(2, i, ACS_HLINE);
@@ -235,7 +227,6 @@ void draw_output(RogueState *state) {
     mvprintw(10, 2, "Last Result:");
     attroff(A_BOLD);
 
-    // Show output lines
     char *line = strtok(state->last_output, "\n");
     int y = 11;
     int max_y = LINES - 5;
@@ -248,7 +239,6 @@ void draw_output(RogueState *state) {
 }
 
 void draw_commands(void) {
-    // Separator
     attron(COLOR_PAIR(COLOR_PAIR_BLUE));
     for (int i = 0; i < COLS; i++) {
         mvaddch(LINES - 3, i, ACS_HLINE);
@@ -279,7 +269,6 @@ int game_over(RogueState *state) {
     draw_centered(LINES / 2 - 3, msg1, COLOR_PAIR(COLOR_PAIR_RED) | A_BOLD);
     draw_centered(LINES / 2 - 1, msg2, COLOR_PAIR(COLOR_PAIR_YELLOW));
 
-    // Check for new record
     if (state->cleared > state->best_score) {
         char record[] = "== NEW RECORD ==";
         char prev[64];
@@ -304,7 +293,6 @@ int game_over(RogueState *state) {
     while (1) {
         int ch = getch();
         if (ch == '\n' || ch == '\r') {
-            // Restart
             restore_backup();
             state->current_idx = 0;
             state->cleared = 0;
@@ -351,7 +339,6 @@ void run_tui(RogueState *state) {
         if (ch == 'q') {
             break;
         } else if (ch == 's') {
-            // Submit current exercise
             if (state->current_idx < state->num_exercises) {
                 char output[MAX_OUTPUT];
                 const char *exercise = state->exercises[state->current_idx].name;
@@ -367,20 +354,17 @@ void run_tui(RogueState *state) {
                     state->last_result = -1;
                     state->last_output[0] = '\0';
 
-                    // Check for victory
                     if (state->current_idx >= state->num_exercises) {
                         victory(state);
                         break;
                     }
                 } else {
-                    // Game over
                     if (!game_over(state)) {
                         break;
                     }
                 }
             }
         } else if (ch == 'h') {
-            // Show hint
             if (state->current_idx < state->num_exercises) {
                 const char *exercise = state->exercises[state->current_idx].name;
                 char *hint = get_hint(exercise);
@@ -392,7 +376,6 @@ void run_tui(RogueState *state) {
 }
 
 int main(void) {
-    // Initialize state
     RogueState state = {
         .num_exercises = 0,
         .current_idx = 0,
@@ -403,28 +386,21 @@ int main(void) {
     };
     state.last_output[0] = '\0';
 
-    // Load exercises
     load_exercises(&state);
     if (state.num_exercises == 0) {
         fprintf(stderr, "Error: No exercises found in exercises/ directory\n");
         return 1;
     }
 
-    // Load best score
     state.best_score = load_best_score();
 
-    // Initialize ncurses
     initscr();
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
     curs_set(0);
     init_colors();
-
-    // Run TUI
     run_tui(&state);
-
-    // Cleanup
     endwin();
 
     return 0;
