@@ -1,0 +1,3 @@
+Queues are FIFO (First In, First Out).
+Circular queues use modulo to wrap around.
+Track both front and rear pointers.

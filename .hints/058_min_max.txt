@@ -1,0 +1,3 @@
+Track minimum and maximum while iterating through the array.
+Range is the difference between max and min.
+Initialize min and max with the first element.

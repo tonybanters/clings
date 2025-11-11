@@ -1,0 +1,4 @@
+Compilers add padding to align struct members.
+Struct size may be larger than the sum of its members.
+Use __attribute__((packed)) to prevent padding.
+Calculate padding based on the largest member's alignment.

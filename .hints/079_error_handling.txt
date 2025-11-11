@@ -1,0 +1,3 @@
+Proper error handling checks all return values.
+Clean up resources before returning on error.
+Use errno and perror for system call errors.

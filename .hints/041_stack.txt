@@ -1,0 +1,3 @@
+Stacks are LIFO (Last In, First Out).
+Push adds to the top, pop removes from the top.
+Check for stack overflow and underflow conditions.

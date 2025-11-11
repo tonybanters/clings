@@ -1,0 +1,3 @@
+Circular buffers use modulo to wrap indices.
+Track read and write positions separately.
+Buffer is full when write catches up to read.

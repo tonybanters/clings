@@ -1,0 +1,3 @@
+Review: data structures, sorting algorithms, and searching.
+Check algorithm implementations carefully.
+Verify loop bounds and comparison logic.

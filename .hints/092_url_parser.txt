@@ -1,0 +1,3 @@
+URLs have format: protocol://host:port/path?query#fragment.
+Parse by finding delimiters and extracting components.
+Handle optional components like port and query.

@@ -1,0 +1,3 @@
+Parse operator and operands from input.
+Use switch/if-else to handle different operations.
+Check for division by zero.

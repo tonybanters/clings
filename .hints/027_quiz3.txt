@@ -1,0 +1,3 @@
+Review: pointers, memory, file I/O, and preprocessor directives.
+Check malloc sizes, file operations, and pointer dereferencing.
+Remember to free allocated memory.

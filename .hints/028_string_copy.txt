@@ -1,0 +1,3 @@
+String functions iterate character by character until '\0'.
+strcpy and strcat need sufficient space in the destination.
+Remember the null terminator when calculating string sizes.

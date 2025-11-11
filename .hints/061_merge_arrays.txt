@@ -1,0 +1,3 @@
+Merge two sorted arrays by comparing elements from both.
+Use three indices: one for each input array and one for output.
+Copy remaining elements when one array is exhausted.

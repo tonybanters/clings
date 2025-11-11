@@ -1,0 +1,3 @@
+const int* - can't modify the data through this pointer.
+int* const - can't change where the pointer points.
+const prevents certain operations - read the compiler errors carefully.

@@ -1,0 +1,3 @@
+Generic swap uses void* and memcpy.
+Need to know size of elements being swapped.
+Use a temporary buffer to hold one element during swap.

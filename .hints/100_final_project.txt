@@ -1,0 +1,4 @@
+This is a comprehensive project combining multiple concepts.
+Break it down into smaller pieces.
+Test each component before integrating.
+Remember all the lessons learned throughout the exercises.

@@ -1,0 +1,3 @@
+Compare user input with the target.
+Provide feedback: too high, too low, or correct.
+Loop until the correct guess is made.

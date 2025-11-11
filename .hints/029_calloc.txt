@@ -1,0 +1,3 @@
+calloc takes TWO arguments: count and size of each element.
+calloc zeroes the memory, malloc doesn't.
+Don't forget to free memory allocated with calloc.

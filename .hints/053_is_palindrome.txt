@@ -1,0 +1,3 @@
+Palindromes read the same forwards and backwards.
+Compare characters from both ends moving inward.
+Return false if any pair doesn't match.

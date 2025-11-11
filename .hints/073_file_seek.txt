@@ -1,0 +1,3 @@
+fseek() moves the file position.
+SEEK_SET from beginning, SEEK_CUR from current, SEEK_END from end.
+ftell() returns current file position.

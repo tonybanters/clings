@@ -1,0 +1,3 @@
+argc includes the program name as the first argument.
+argv[0] is the program name, actual arguments start at argv[1].
+Use strcmp() to compare strings, not ==.

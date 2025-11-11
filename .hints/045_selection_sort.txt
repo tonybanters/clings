@@ -1,0 +1,3 @@
+Selection sort finds the minimum element and moves it to the front.
+Repeat for the remaining unsorted portion.
+Track the index of the minimum element.

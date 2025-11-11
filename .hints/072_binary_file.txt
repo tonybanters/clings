@@ -1,0 +1,3 @@
+Binary files use fread() and fwrite().
+Read/write structs directly to binary files.
+Specify size and count for each operation.

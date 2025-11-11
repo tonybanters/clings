@@ -1,0 +1,3 @@
+fprintf writes formatted output to files.
+Don't forget newlines in file output.
+Always check if file operations succeed.

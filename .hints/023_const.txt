@@ -1,0 +1,3 @@
+const prevents modification of data.
+const int* means you can't modify the data through this pointer.
+Check function parameters - some should promise not to modify their inputs.

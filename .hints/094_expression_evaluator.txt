@@ -1,0 +1,3 @@
+Evaluate expressions using operator precedence.
+Use stacks or recursive descent parsing.
+Handle parentheses and operator associativity.

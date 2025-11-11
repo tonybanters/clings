@@ -1,0 +1,3 @@
+void* is a generic pointer that can point to any type.
+Must cast void* before dereferencing it.
+Can't do pointer arithmetic on void* - cast to a typed pointer first.

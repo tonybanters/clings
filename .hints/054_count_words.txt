@@ -1,0 +1,3 @@
+Words are separated by whitespace.
+Track state: inside a word or between words.
+Count transitions from whitespace to non-whitespace.

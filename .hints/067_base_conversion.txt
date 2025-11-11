@@ -1,0 +1,3 @@
+Convert by repeatedly dividing by the target base.
+Remainders give digits in reverse order.
+Handle different bases (binary, octal, decimal, hex).

@@ -1,0 +1,3 @@
+Review: advanced data structures, parsing, and system programming.
+Check complex algorithm implementations.
+Verify proper resource management.

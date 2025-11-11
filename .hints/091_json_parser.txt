@@ -1,0 +1,3 @@
+Parse JSON by identifying tokens: {}, [], :, comma, strings, numbers.
+Build a tree structure to represent the JSON.
+Handle nested objects and arrays recursively.

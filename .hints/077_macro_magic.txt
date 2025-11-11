@@ -1,0 +1,3 @@
+Macros need parentheses to ensure correct operator precedence.
+((a) + (b)) prevents unexpected behavior with complex expressions.
+Use do { ... } while(0) for multi-statement macros.

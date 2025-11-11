@@ -1,0 +1,4 @@
+Linked lists connect nodes with pointers.
+When inserting, update the next pointer to point to the current head.
+When deleting, free the node after unlinking it.
+Traverse by following next pointers until NULL.

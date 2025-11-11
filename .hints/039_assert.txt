@@ -1,0 +1,3 @@
+assert() checks conditions and crashes if they're false.
+Use assert() to validate function preconditions.
+Assertions help catch bugs during development.

@@ -1,0 +1,3 @@
+strtok() splits strings by delimiters.
+First call uses the string, subsequent calls use NULL.
+strtok modifies the original string.

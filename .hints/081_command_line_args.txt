@@ -1,0 +1,3 @@
+Parse command-line arguments from argv array.
+argc counts total arguments including program name.
+Check argc before accessing argv elements.

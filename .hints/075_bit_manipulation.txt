@@ -1,0 +1,4 @@
+Count bits by checking each bit with AND.
+Set bit: x | (1 << n)
+Clear bit: x & ~(1 << n)
+Toggle bit: x ^ (1 << n)

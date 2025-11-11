@@ -1,0 +1,3 @@
+Review: file I/O, bit manipulation, macros, and error handling.
+Check low-level operations carefully.
+Verify resource cleanup in all paths.

@@ -1,0 +1,4 @@
+Variadic functions use va_list, va_start, va_arg, and va_end.
+va_start needs the last fixed parameter.
+Always call va_end to clean up.
+va_arg needs the correct type.

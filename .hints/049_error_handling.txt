@@ -1,0 +1,3 @@
+Use perror() to print error messages with errno.
+Check return values of system calls and library functions.
+errno contains the error code from the last failed operation.

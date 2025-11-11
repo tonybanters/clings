@@ -1,0 +1,3 @@
+Temperature conversion formulas use division.
+Integer division truncates - use floating-point.
+C = (F - 32) * 5/9, F = C * 9/5 + 32.

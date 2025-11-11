@@ -1,0 +1,3 @@
+sizeof on an array parameter gives pointer size, not array size.
+Pass array size as a separate parameter to functions.
+sizeof(array)/sizeof(array[0]) only works in the scope where the array is declared.

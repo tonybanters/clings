@@ -1,0 +1,3 @@
+Binary search requires a sorted array.
+Compare the middle element with the target.
+Adjust start or end based on comparison, then repeat.

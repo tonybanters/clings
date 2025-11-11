@@ -1,0 +1,3 @@
+Structs can be assigned directly with =.
+Deep copy requires manually copying pointer data.
+Shallow copy just copies pointer addresses.

@@ -1,0 +1,3 @@
+realloc can fail even when shrinking memory.
+Never assign realloc directly to the original pointer - use a temp variable.
+realloc may move memory to a new location.

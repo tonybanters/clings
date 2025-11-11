@@ -1,0 +1,3 @@
+Review: advanced pointers, const, static, and memory management.
+Check pointer types and const correctness.
+Verify all memory allocations and frees.

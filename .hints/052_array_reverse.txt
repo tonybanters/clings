@@ -1,0 +1,3 @@
+Swap elements from both ends, moving toward the center.
+Use two indices: one at start, one at end.
+Stop when they meet in the middle.

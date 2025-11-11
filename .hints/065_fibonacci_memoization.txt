@@ -1,0 +1,3 @@
+Memoization stores previously computed results.
+Check if result is cached before computing.
+Use an array to store Fibonacci values.

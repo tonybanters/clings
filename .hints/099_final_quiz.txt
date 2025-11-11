@@ -1,0 +1,3 @@
+Final quiz covers everything: data structures, algorithms, parsing, systems.
+Review all previous concepts.
+Take your time and work through systematically.

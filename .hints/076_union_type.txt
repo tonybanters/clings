@@ -1,0 +1,3 @@
+Tagged unions store a type field to track which member is active.
+Check the type field before accessing union members.
+Only one member is valid at a time.

@@ -1,0 +1,3 @@
+Function pointers store the address of a function.
+Use & to get a function's address (though it's optional).
+Call through function pointers using (*ptr)(args) or just ptr(args).

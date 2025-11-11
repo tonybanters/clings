@@ -1,0 +1,3 @@
+Memory pools pre-allocate a large block of memory.
+Divide the block into fixed-size chunks.
+Track which chunks are free vs allocated.

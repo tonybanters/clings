@@ -1,0 +1,3 @@
+Pointer to pointer requires two levels of dereferencing.
+To get the address of a pointer, use the & operator on the pointer variable.
+** is used to access the value through a double pointer.

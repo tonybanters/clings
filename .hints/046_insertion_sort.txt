@@ -1,0 +1,3 @@
+Insertion sort builds a sorted array one element at a time.
+Insert each element into its correct position in the sorted portion.
+Shift elements to make room for insertion.

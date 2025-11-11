@@ -1,0 +1,3 @@
+Macros need parentheses around parameters to avoid operator precedence issues.
+(a) ensures the parameter is evaluated as a unit.
+Without parentheses, expressions like 2*x can expand incorrectly.

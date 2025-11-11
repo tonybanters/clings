@@ -1,0 +1,3 @@
+Bubble sort repeatedly swaps adjacent elements if they're in wrong order.
+Each pass bubbles the largest element to the end.
+Optimize by reducing the range on each pass.

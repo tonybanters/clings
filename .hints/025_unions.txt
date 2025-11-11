@@ -1,0 +1,4 @@
+Unions store only ONE member at a time - they share memory.
+Writing to one member overwrites the others.
+Union size is determined by its largest member.
+Check which union member was last written to.

@@ -1,0 +1,3 @@
+Custom allocators manage a large memory block.
+Track free and allocated regions with metadata.
+Implement malloc/free by splitting and merging blocks.

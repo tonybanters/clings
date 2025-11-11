@@ -1,0 +1,3 @@
+time() gets current time as seconds since epoch.
+localtime() converts to struct tm with date/time fields.
+strftime() formats time as a string.

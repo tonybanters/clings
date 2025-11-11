@@ -1,0 +1,4 @@
+String literals are stored in read-only memory.
+char* can point to string literals but shouldn't modify them.
+Use char[] for modifiable strings.
+String literals have static storage duration.

@@ -1,0 +1,3 @@
+Use getenv() to read environment variables.
+Returns NULL if variable doesn't exist.
+Environment variables are strings.

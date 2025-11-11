@@ -1,0 +1,3 @@
+static local variables retain their values between function calls.
+Unlike regular local variables, static variables are initialized only once.
+Check which variables need to persist across multiple function invocations.

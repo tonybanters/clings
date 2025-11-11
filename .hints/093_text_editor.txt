@@ -1,0 +1,3 @@
+Text editors maintain a buffer of lines.
+Implement commands: insert, delete, save, load.
+Track current line/cursor position.

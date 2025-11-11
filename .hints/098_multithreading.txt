@@ -1,0 +1,3 @@
+Create threads with pthread_create.
+Join threads with pthread_join to wait for completion.
+Use mutexes to protect shared data from race conditions.

@@ -1,0 +1,3 @@
+Variadic macros use __VA_ARGS__ to capture variable arguments.
+Must specify at least one fixed argument before ...
+Useful for logging and printf-style functions.

@@ -1,0 +1,3 @@
+2D arrays are arrays of arrays.
+array[row][col] accesses elements.
+Check array dimensions carefully - rows and columns can be mixed up.

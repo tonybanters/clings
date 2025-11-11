@@ -1,0 +1,3 @@
+BST property: left < node < right.
+Insert by recursively finding the correct position.
+Search by comparing and going left or right.

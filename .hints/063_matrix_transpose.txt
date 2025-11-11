@@ -1,0 +1,3 @@
+Transpose swaps rows and columns.
+Element at [i][j] becomes [j][i].
+Create a new matrix or swap in-place for square matrices.

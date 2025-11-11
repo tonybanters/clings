@@ -1,0 +1,3 @@
+goto is useful for cleanup in error handling.
+Jump to a cleanup label that frees all allocated resources.
+Ensure all error paths clean up properly.

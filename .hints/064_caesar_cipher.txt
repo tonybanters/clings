@@ -1,0 +1,3 @@
+Caesar cipher shifts each letter by a fixed amount.
+Use modulo to wrap around the alphabet.
+Handle uppercase and lowercase separately.

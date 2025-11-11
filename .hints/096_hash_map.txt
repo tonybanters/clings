@@ -1,0 +1,3 @@
+Hash maps use hash functions to compute array indices.
+Handle collisions with chaining or open addressing.
+Resize when load factor gets too high.

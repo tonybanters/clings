@@ -1,0 +1,3 @@
+Review: strings, arrays, file I/O, and algorithms.
+Check string operations and array manipulations.
+Verify file handling and memory management.

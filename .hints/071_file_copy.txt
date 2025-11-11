@@ -1,0 +1,3 @@
+Copy files byte by byte or in chunks.
+Open source for reading and destination for writing.
+Check for read/write errors at each step.

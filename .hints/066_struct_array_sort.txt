@@ -1,0 +1,3 @@
+Use qsort() with a comparison function.
+Comparison function takes two const void* pointers.
+Cast pointers to the correct struct type before comparing.

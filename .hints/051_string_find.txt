@@ -1,0 +1,3 @@
+Search for substrings by comparing character by character.
+Return a pointer to the first match.
+Handle the case where the substring is not found.

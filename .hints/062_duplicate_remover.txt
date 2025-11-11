@@ -1,0 +1,3 @@
+To remove duplicates, track unique elements seen so far.
+Compare each element with all previous elements.
+Alternatively, sort first then remove adjacent duplicates.

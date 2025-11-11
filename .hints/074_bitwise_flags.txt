@@ -1,0 +1,3 @@
+Use bitwise OR to set flags.
+Use bitwise AND to check flags.
+Use bitwise XOR to toggle flags.

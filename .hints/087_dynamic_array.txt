@@ -1,0 +1,3 @@
+Dynamic arrays grow by reallocating with larger size.
+Double capacity when array is full.
+Copy old elements to new array after reallocation.
