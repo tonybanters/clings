@@ -1,6 +1,7 @@
 /*
- * Clings Rogue Mode TUI
- * Interactive terminal UI for hardcore C programming challenges
+ * Clings TUI
+ * Interactive terminal UI for C programming challenges
+ * Supports both casual mode (retry on failure) and rogue mode (restart on failure)
  */
 
 #include <ncurses.h>
@@ -24,9 +25,12 @@ typedef struct {
     int current_idx;
     int cleared;
     int best_score;
-    int last_result; // -1 = no result, 0 = fail, 1 = pass
+    int last_result;
     char last_output[MAX_OUTPUT];
     int backup_created;
+    int is_rogue_mode;
+    char backup_dir[64];
+    char progress_file[64];
 } RogueState;
 
 // Colors
@@ -73,8 +77,8 @@ void load_exercises(RogueState *state) {
     qsort(state->exercises, state->num_exercises, sizeof(Exercise), compare_exercises);
 }
 
-int load_best_score(void) {
-    FILE *f = fopen(".rogue_progress", "r");
+int load_best_score(const char *progress_file) {
+    FILE *f = fopen(progress_file, "r");
     if (!f) return 0;
 
     int best = 0;
@@ -83,22 +87,45 @@ int load_best_score(void) {
     return best;
 }
 
-void save_best_score(int score, int total) {
-    FILE *f = fopen(".rogue_progress", "w");
+void save_best_score(const char *progress_file, int score, int total) {
+    FILE *f = fopen(progress_file, "w");
     if (!f) return;
 
     fprintf(f, "%d/%d\n", score, total);
     fclose(f);
 }
 
-void create_backup(void) {
-    system("rm -rf .rogue_backup 2>/dev/null");
-    system("cp -r exercises .rogue_backup");
+void create_backup(const char *backup_dir) {
+    char cmd[512];
+    snprintf(cmd, sizeof(cmd), "rm -rf %s 2>/dev/null", backup_dir);
+    system(cmd);
+    snprintf(cmd, sizeof(cmd), "cp -r exercises %s", backup_dir);
+    system(cmd);
 }
 
-void restore_backup(void) {
+void restore_backup(const char *backup_dir) {
+    char cmd[512];
     system("rm -rf exercises");
-    system("cp -r .rogue_backup exercises");
+    snprintf(cmd, sizeof(cmd), "cp -r %s exercises", backup_dir);
+    system(cmd);
+}
+
+void strip_ansi_codes(char *str) {
+    char *src = str;
+    char *dst = str;
+
+    while (*src) {
+        if (*src == '\033' && *(src + 1) == '[') {
+            src += 2;
+            while (*src && *src != 'm') {
+                src++;
+            }
+            if (*src == 'm') src++;
+        } else {
+            *dst++ = *src++;
+        }
+    }
+    *dst = '\0';
 }
 
 int test_exercise(const char *exercise, char *output, size_t output_size) {
@@ -121,6 +148,8 @@ int test_exercise(const char *exercise, char *output, size_t output_size) {
         }
     }
     output[pos] = '\0';
+
+    strip_ansi_codes(output);
 
     int status = pclose(fp);
     return (status == 0) ? 1 : 0;
@@ -169,7 +198,11 @@ void draw_centered(int y, const char *text, int attr) {
 }
 
 void draw_header(RogueState *state) {
-    draw_centered(0, "== ROGUE MODE ==", COLOR_PAIR(COLOR_PAIR_RED) | A_BOLD);
+    if (state->is_rogue_mode) {
+        draw_centered(0, "== ROGUE MODE ==", COLOR_PAIR(COLOR_PAIR_RED) | A_BOLD);
+    } else {
+        draw_centered(0, "== CASUAL MODE ==", COLOR_PAIR(COLOR_PAIR_GREEN) | A_BOLD);
+    }
 
     char progress[64];
     snprintf(progress, sizeof(progress), "Progress: %d/%d", state->cleared, state->num_exercises);
@@ -207,7 +240,11 @@ void draw_current_exercise(RogueState *state) {
 
     if (state->last_result == -1) {
         attron(COLOR_PAIR(COLOR_PAIR_YELLOW));
-        mvprintw(8, 4, "WAITING - Edit the file, then press 's' to submit");
+        if (state->is_rogue_mode) {
+            mvprintw(8, 4, "WAITING - Edit the file, then press 's' to submit (FAIL = RESTART!)");
+        } else {
+            mvprintw(8, 4, "WAITING - Edit the file, then press 's' to submit");
+        }
         attroff(COLOR_PAIR(COLOR_PAIR_YELLOW));
     } else if (state->last_result == 1) {
         attron(COLOR_PAIR(COLOR_PAIR_GREEN) | A_BOLD);
@@ -277,7 +314,7 @@ int game_over(RogueState *state) {
         draw_centered(LINES / 2 + 1, record, COLOR_PAIR(COLOR_PAIR_GREEN) | A_BOLD);
         draw_centered(LINES / 2 + 2, prev, COLOR_PAIR(COLOR_PAIR_GREEN));
 
-        save_best_score(state->cleared, state->num_exercises);
+        save_best_score(state->progress_file, state->cleared, state->num_exercises);
         state->best_score = state->cleared;
     } else {
         char best[64];
@@ -293,7 +330,9 @@ int game_over(RogueState *state) {
     while (1) {
         int ch = getch();
         if (ch == '\n' || ch == '\r') {
-            restore_backup();
+            if (state->is_rogue_mode) {
+                restore_backup(state->backup_dir);
+            }
             state->current_idx = 0;
             state->cleared = 0;
             state->last_result = -1;
@@ -318,7 +357,7 @@ void victory(RogueState *state) {
     draw_centered(LINES / 2, msg2, COLOR_PAIR(COLOR_PAIR_GREEN));
     draw_centered(LINES / 2 + 1, msg3, COLOR_PAIR(COLOR_PAIR_GREEN) | A_BOLD);
 
-    save_best_score(state->num_exercises, state->num_exercises);
+    save_best_score(state->progress_file, state->num_exercises, state->num_exercises);
 
     char prompt[] = "Press any key to exit";
     draw_centered(LINES / 2 + 3, prompt, 0);
@@ -328,7 +367,7 @@ void victory(RogueState *state) {
 }
 
 void run_tui(RogueState *state) {
-    create_backup();
+    create_backup(state->backup_dir);
     state->backup_created = 1;
 
     while (1) {
@@ -359,8 +398,11 @@ void run_tui(RogueState *state) {
                         break;
                     }
                 } else {
-                    if (!game_over(state)) {
-                        break;
+                    if (!state->is_rogue_mode) {
+                    } else {
+                        if (!game_over(state)) {
+                            break;
+                        }
                     }
                 }
             }
@@ -375,16 +417,30 @@ void run_tui(RogueState *state) {
     }
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
+    int is_rogue = 0;
+    if (argc > 1 && strcmp(argv[1], "rogue") == 0) {
+        is_rogue = 1;
+    }
+
     RogueState state = {
         .num_exercises = 0,
         .current_idx = 0,
         .cleared = 0,
         .best_score = 0,
         .last_result = -1,
-        .backup_created = 0
+        .backup_created = 0,
+        .is_rogue_mode = is_rogue
     };
     state.last_output[0] = '\0';
+
+    if (is_rogue) {
+        strncpy(state.backup_dir, ".rogue_backup", sizeof(state.backup_dir));
+        strncpy(state.progress_file, ".rogue_progress", sizeof(state.progress_file));
+    } else {
+        strncpy(state.backup_dir, ".casual_backup", sizeof(state.backup_dir));
+        strncpy(state.progress_file, ".casual_progress", sizeof(state.progress_file));
+    }
 
     load_exercises(&state);
     if (state.num_exercises == 0) {
@@ -392,7 +448,7 @@ int main(void) {
         return 1;
     }
 
-    state.best_score = load_best_score();
+    state.best_score = load_best_score(state.progress_file);
 
     initscr();
     cbreak();

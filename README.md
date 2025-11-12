@@ -6,13 +6,36 @@ Inspired by the brilliant [Ziglings](https://codeberg.org/ziglings/exercises) an
 
 ![Clings TUI](assets/rogue-tui.png)
 
+## Interactive TUI
+
+Clings features an interactive terminal UI with two game modes:
+
+**Casual Mode** (default): Fix exercises at your own pace. Failed attempts let you retry immediately with full error output and hints.
+
+```bash
+make tui
+```
+
+**Rogue Mode**: Hardcore challenge mode. One mistake and you restart from exercise 1. Track your best run and compete with yourself.
+
+```bash
+make tui-rogue
+```
+
+Each mode tracks progress independently, so you can practice in casual mode while attempting rogue mode runs.
+
 ## Getting Started
 
 ### Prerequisites
 
 - A C compiler (GCC or Clang recommended)
 - Make
-- Basic command-line knowledge
+- ncurses library
+
+On NixOS:
+```bash
+nix develop
+```
 
 ### Installation
 
@@ -23,30 +46,35 @@ cd clings
 
 ### Usage
 
-The simplest way to get started:
+**Interactive Mode** (recommended):
 
 ```bash
-make
+make tui          # Casual mode - retry on failure
+make tui-rogue    # Rogue mode - restart on failure
 ```
 
-This will run through each exercise in order, compiling and testing them. When an exercise fails, you'll see the error and can fix it. Once fixed, run `make` again to continue.
-
-### Other Commands
+**Command-line Mode**:
 
 ```bash
-make run 5      # Run a specific exercise (e.g., exercise 5)
-make start 10   # Start from exercise 10 and continue sequentially
-make clean      # Remove build artifacts
-make help       # Show help message
-make rogue      # Run exercises in random order (rogue-like mode)
-make hint       # Show hints for the current exercise
-make tui        # Launch the interactive TUI (Text User Interface)
+make              # Run exercises sequentially until one fails
+make run 5        # Run a specific exercise
+make start 10     # Start from exercise 10 onwards
+make hint         # Show hint for the current failing exercise
+make rogue        # Rogue mode without TUI
 ```
 
 ## How It Works
 
 Each exercise is a small C program with intentional bugs or missing code. Your job is to fix them!
 
+**In TUI Mode**:
+1. Press 's' to submit your solution
+2. View errors and hints in the interface
+3. Fix the code in your editor
+4. Submit again until it passes
+5. Automatically advance to the next exercise
+
+**In Command-line Mode**:
 1. Run `make` to start
 2. Read the compilation errors or test failures
 3. Open the exercise file and fix the problems

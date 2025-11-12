@@ -3,12 +3,15 @@
 *.o
 *.out
 *.exe
+clings_tui
 rogue_tui
 
 # Progress tracking
 .progress.txt
 .rogue_progress
+.casual_progress
 .rogue_backup/
+.casual_backup/
 
 # Editor files
 *.swp

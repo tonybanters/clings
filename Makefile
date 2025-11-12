@@ -6,6 +6,8 @@ CFLAGS = -Wall -Wextra -Werror -std=c99 -pedantic
 BUILD_DIR = .build
 PROGRESS_FILE = .progress.txt
 ROGUE_PROGRESS = .rogue_progress
+CASUAL_PROGRESS = .casual_progress
+TUI_BIN = clings_tui
 
 # Find all exercise files
 EXERCISES := $(sort $(wildcard exercises/*.c))
@@ -19,7 +21,7 @@ BLUE := \033[0;34m
 BOLD := \033[1m
 RESET := \033[0m
 
-.PHONY: all clean help run start reset hint rogue tui
+.PHONY: all clean help run start reset hint rogue tui tui-rogue
 
 all: sequential
 
@@ -32,7 +34,8 @@ help:
 	@printf "  $(GREEN)make start N$(RESET)   - Start from exercise N onwards\n"
 	@printf "  $(GREEN)make hint$(RESET)      - Show hint for the first failing exercise\n"
 	@printf "  $(GREEN)make rogue$(RESET)     - Hardcore mode: restart from 1 on any failure\n"
-	@printf "  $(GREEN)make tui$(RESET)       - Rogue mode with interactive TUI interface\n"
+	@printf "  $(GREEN)make tui$(RESET)       - Interactive TUI (casual mode - can retry failures)\n"
+	@printf "  $(GREEN)make tui-rogue$(RESET) - Interactive TUI (rogue mode - restart on failure)\n"
 	@printf "  $(GREEN)make reset$(RESET)     - Reset progress tracking\n"
 	@printf "  $(GREEN)make clean$(RESET)     - Clean build artifacts\n"
 	@printf "\n"
@@ -229,28 +232,52 @@ rogue: $(BUILD_DIR)
 		fi; \
 	done
 
-# TUI mode - rogue mode with interactive interface
+# TUI mode - casual mode (default) with interactive interface
 tui: $(BUILD_DIR)
-	@if [ ! -f rogue_tui ]; then \
+	@if [ ! -f $(TUI_BIN) ]; then \
 		printf "$(YELLOW)Building TUI...$(RESET)\n"; \
-		NCURSES_INC=$$(find /nix/store -name "ncurses.h" 2>/dev/null | head -1 | xargs dirname); \
-		NCURSES_LIB=$$(find /nix/store -path "*/ncurses-*/lib" -type d 2>/dev/null | head -1); \
-		if [ -n "$$NCURSES_INC" ] && [ -n "$$NCURSES_LIB" ]; then \
-			$(CC) -o rogue_tui rogue_tui.c -I$$NCURSES_INC -L$$NCURSES_LIB -lncurses; \
+		if $(CC) -o $(TUI_BIN) clings_tui.c -lncurses 2>/dev/null; then \
+			: ; \
 		else \
-			$(CC) -o rogue_tui rogue_tui.c -lncurses; \
+			NCURSES_INC=$$(find /nix/store -name "ncurses.h" 2>/dev/null | head -1 | xargs dirname 2>/dev/null); \
+			NCURSES_LIB=$$(find /nix/store -path "*/ncurses-*/lib" -type d 2>/dev/null | head -1); \
+			if [ -n "$$NCURSES_INC" ] && [ -n "$$NCURSES_LIB" ]; then \
+				$(CC) -o $(TUI_BIN) clings_tui.c -I$$NCURSES_INC -L$$NCURSES_LIB -lncurses; \
+			else \
+				printf "$(RED)Error: ncurses not found. Try running 'nix develop' first.$(RESET)\n"; \
+				exit 1; \
+			fi; \
 		fi; \
 	fi
-	@./rogue_tui
+	@./$(TUI_BIN)
+
+# TUI mode - rogue mode with interactive interface
+tui-rogue: $(BUILD_DIR)
+	@if [ ! -f $(TUI_BIN) ]; then \
+		printf "$(YELLOW)Building TUI...$(RESET)\n"; \
+		if $(CC) -o $(TUI_BIN) clings_tui.c -lncurses 2>/dev/null; then \
+			: ; \
+		else \
+			NCURSES_INC=$$(find /nix/store -name "ncurses.h" 2>/dev/null | head -1 | xargs dirname 2>/dev/null); \
+			NCURSES_LIB=$$(find /nix/store -path "*/ncurses-*/lib" -type d 2>/dev/null | head -1); \
+			if [ -n "$$NCURSES_INC" ] && [ -n "$$NCURSES_LIB" ]; then \
+				$(CC) -o $(TUI_BIN) clings_tui.c -I$$NCURSES_INC -L$$NCURSES_LIB -lncurses; \
+			else \
+				printf "$(RED)Error: ncurses not found. Try running 'nix develop' first.$(RESET)\n"; \
+				exit 1; \
+			fi; \
+		fi; \
+	fi
+	@./$(TUI_BIN) rogue
 
 # Reset progress
 reset:
-	@rm -f $(PROGRESS_FILE) $(ROGUE_PROGRESS)
+	@rm -f $(PROGRESS_FILE) $(ROGUE_PROGRESS) $(CASUAL_PROGRESS)
 	@printf "$(GREEN)Progress reset!$(RESET)\n"
 
 # Clean build artifacts
 clean:
-	@rm -rf $(BUILD_DIR) .rogue_backup rogue_tui
+	@rm -rf $(BUILD_DIR) .rogue_backup .casual_backup $(TUI_BIN)
 	@printf "$(GREEN)Build artifacts cleaned!$(RESET)\n"
 
 # Allow numeric arguments to be passed as targets
