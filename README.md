@@ -16,7 +16,7 @@ Clings features an interactive terminal UI with two game modes:
 make tui
 ```
 
-**Rogue Mode**: Hardcore challenge mode. One mistake and you restart from exercise 1. Track your best run and compete with yourself.
+**Rogue-Like Mode**: Hardcore challenge mode. One mistake and you restart from exercise 1. Track your best run and compete with yourself. *Inspired by Hardcore mode in Diablo 2)
 
 ```bash
 make tui-rogue
@@ -28,7 +28,7 @@ Each mode tracks progress independently, so you can practice in casual mode whil
 
 ### Prerequisites
 
-- A C compiler (GCC or Clang recommended)
+- C compiler (GCC recommended)
 - Make
 - ncurses library
 
@@ -39,8 +39,16 @@ nix develop
 
 ### Installation
 
+## Quick Start
+
 ```bash
-git clone <repository-url> clings
+git clone https://github.com/tonybanters/clings && cd clings && make tui
+```
+
+## Base Install
+
+```bash
+git clone https://github.com/tonybanters/clings clings
 cd clings
 ```
 
